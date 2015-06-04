@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		28736EC01B1D326400C3E544 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28736EBF1B1D326400C3E544 /* MapViewController.m */; };
 		28736EC71B1E1D1100C3E544 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28736EC61B1E1D1100C3E544 /* CoreLocation.framework */; };
-		28736ECA1B1E40DE00C3E544 /* AnnotationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28736EC91B1E40DE00C3E544 /* AnnotationViewController.m */; };
+		28CDAFD81B1E433700182F82 /* Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFD71B1E433700182F82 /* Annotation.m */; };
+		28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFDA1B1E6EEF00182F82 /* Overlay.m */; };
+		28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE01B1F9DB700182F82 /* CircleView.m */; };
+		28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE31B1FA01600182F82 /* CircularButton.m */; };
 		28DDD19C1B1D28EE0037045B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19B1B1D28EE0037045B /* main.m */; };
 		28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19E1B1D28EE0037045B /* AppDelegate.m */; };
 		28DDD1A21B1D28EE0037045B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD1A11B1D28EE0037045B /* MainViewController.m */; };
@@ -34,8 +37,14 @@
 		28736EBE1B1D326400C3E544 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28736EBF1B1D326400C3E544 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		28736EC61B1E1D1100C3E544 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		28736EC81B1E40DE00C3E544 /* AnnotationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnotationViewController.h; sourceTree = "<group>"; };
-		28736EC91B1E40DE00C3E544 /* AnnotationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnotationViewController.m; sourceTree = "<group>"; };
+		28CDAFD61B1E433700182F82 /* Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Annotation.h; sourceTree = "<group>"; };
+		28CDAFD71B1E433700182F82 /* Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Annotation.m; sourceTree = "<group>"; };
+		28CDAFD91B1E6EEF00182F82 /* Overlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Overlay.h; sourceTree = "<group>"; };
+		28CDAFDA1B1E6EEF00182F82 /* Overlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Overlay.m; sourceTree = "<group>"; };
+		28CDAFDF1B1F9DB700182F82 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		28CDAFE01B1F9DB700182F82 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		28CDAFE21B1FA01600182F82 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
+		28CDAFE31B1FA01600182F82 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
 		28DDD1961B1D28EE0037045B /* FoundYa01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundYa01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DDD19A1B1D28EE0037045B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28DDD19B1B1D28EE0037045B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -140,8 +149,14 @@
 				28DDD1A11B1D28EE0037045B /* MainViewController.m */,
 				28736EBE1B1D326400C3E544 /* MapViewController.h */,
 				28736EBF1B1D326400C3E544 /* MapViewController.m */,
-				28736EC81B1E40DE00C3E544 /* AnnotationViewController.h */,
-				28736EC91B1E40DE00C3E544 /* AnnotationViewController.m */,
+				28CDAFD61B1E433700182F82 /* Annotation.h */,
+				28CDAFD71B1E433700182F82 /* Annotation.m */,
+				28CDAFE21B1FA01600182F82 /* CircularButton.h */,
+				28CDAFE31B1FA01600182F82 /* CircularButton.m */,
+				28CDAFD91B1E6EEF00182F82 /* Overlay.h */,
+				28CDAFDA1B1E6EEF00182F82 /* Overlay.m */,
+				28CDAFDF1B1F9DB700182F82 /* CircleView.h */,
+				28CDAFE01B1F9DB700182F82 /* CircleView.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -253,9 +268,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CDAFD81B1E433700182F82 /* Annotation.m in Sources */,
 				28DDD1A21B1D28EE0037045B /* MainViewController.m in Sources */,
+				28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */,
 				28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */,
-				28736ECA1B1E40DE00C3E544 /* AnnotationViewController.m in Sources */,
+				28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */,
+				28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */,
 				28DDD19C1B1D28EE0037045B /* main.m in Sources */,
 				28736EC01B1D326400C3E544 /* MapViewController.m in Sources */,
 			);

@@ -7,7 +7,8 @@
 //
 
 #import "MapViewController.h"
-
+#define METERS_PER_MILE 1609.344
+#import "Overlay.h"
 
 @interface MapViewController ()
 
@@ -37,10 +38,7 @@
     _mapView = [[MKMapView alloc]initWithFrame:self.view.frame];
     [self.view addSubview:_mapView];
     self.mapView.delegate = self;
-   
-    
-    
-    
+    self.locationManager = [[CLLocationManager alloc] init];
     
     if(IS_OS_8_OR_LATER)
         
@@ -49,12 +47,17 @@
         [self.locationManager requestAlwaysAuthorization];
     }
     
-    {
-        [self.locationManager startUpdatingLocation];
+    [self.locationManager startUpdatingLocation];
         
         _mapView.showsUserLocation = YES;
         _mapView.showsPointsOfInterest = YES;
-    }
+    
+    UIButton *findButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    findButton.frame = CGRectMake(150, 30, 120, 60);
+    findButton.backgroundColor = [UIColor blackColor];
+    [findButton setTitle:@"find" forState:UIControlStateNormal];
+    [_mapView addSubview:findButton];
+    [findButton addTarget:self action:@selector(showFindOptions) forControlEvents:UIControlEventTouchUpInside];
     // Do any additional setup after loading the view.
 }
 
@@ -64,53 +67,67 @@
     // if no pin can be dequeued then we create one
     MKAnnotationView *view=[_mapView dequeueReusableAnnotationViewWithIdentifier:reuseID];
     
-    
+    if (!view)
     {
         view=[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseID];
         view.image = [UIImage imageNamed:@"poop_smiley1"];
-        //UIImageView* image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper_towl"]];
-        view.leftCalloutAccessoryView = imageView;
-        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        view.canShowCallout=YES;
-        //view.animatesDrop = YES;
-        view.enabled = YES;
-        
-        
+//        //UIImageView* image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
+//        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper_towl"]];
+//        view.leftCalloutAccessoryView = imageView;
+//        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//        view.canShowCallout=YES;
+//        //view.animatesDrop = YES;
+//        view.enabled = YES;
     }
     
-    view.annotation=annotation;
+//    view.annotation=annotation;
+    
     
     return view;
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
+    // Location points downtown Toronto
+    CLLocationCoordinate2D zoomLocation;
+    zoomLocation.latitude = 43.642566;
+    zoomLocation.longitude= -79.387057;
+    Annotation *annotation = [[Annotation alloc] initWithLocation:zoomLocation];
+    [_mapView addAnnotation: annotation];
+    // Zoom function: region made around user location centre point with a given width / height
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
     
-    MKMapRect zoomRect = MKMapRectNull;
-    for (id <MKAnnotation> annotation in _mapView.annotations)
-    {
-        MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
-        MKMapRect pointRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 0, 0);
-        if (MKMapRectIsNull(zoomRect))
-        {
-            zoomRect = pointRect;
-        } else
-        {
-            zoomRect = MKMapRectUnion(zoomRect, pointRect);
-        }
-    }
-    [_mapView setVisibleMapRect:zoomRect animated:YES];
-    
+    // 3
+    [_mapView setRegion:viewRegion animated:YES];
 }
+
+//- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+//{
+//    // annotation
+//    Annotation *annotation = (Annotation *)view.annotation;
+//    //deselect
+//    [self.mapView deselectAnnotation:annotation animated:YES];
+//    
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper_towl"]];
+//    view.leftCalloutAccessoryView = imageView;
+//    view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//    view.canShowCallout=YES;
+//    //view.animatesDrop = YES;
+//    view.enabled = YES;
+//}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    Overlay *overlay = [[Overlay alloc] initWithFrame:self.view.bounds];
+   
+    [self.view addSubview:overlay];
+    [self.view bringSubviewToFront:overlay];
+}
+
+
 /*
 #pragma mark - Navigation
 
