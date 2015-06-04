@@ -57,8 +57,11 @@
     findButton.backgroundColor = [UIColor blackColor];
     [findButton setTitle:@"find" forState:UIControlStateNormal];
     [_mapView addSubview:findButton];
-    [findButton addTarget:self action:@selector(showFindOptions) forControlEvents:UIControlEventTouchUpInside];
+    [findButton addTarget:self action:@selector(getOptions:) forControlEvents:UIControlEventTouchUpInside];
+    
     // Do any additional setup after loading the view.
+    
+
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -71,6 +74,7 @@
     {
         view=[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseID];
         view.image = [UIImage imageNamed:@"poop_smiley1"];
+        
 //        //UIImageView* image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
 //        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper_towl"]];
 //        view.leftCalloutAccessoryView = imageView;
@@ -125,9 +129,16 @@
    
     [self.view addSubview:overlay];
     [self.view bringSubviewToFront:overlay];
+//}
+//
+    
 }
-
-
+-(void)getOptions:(UIButton *)sender {
+    
+    [self performSegueWithIdentifier:@"findOptions" sender:self];
+    
+    //[self presentViewController:<#(UIViewController *)#>FindViewController animated:YES];
+}
 /*
 #pragma mark - Navigation
 

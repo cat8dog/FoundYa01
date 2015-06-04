@@ -13,6 +13,8 @@
 		28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFDA1B1E6EEF00182F82 /* Overlay.m */; };
 		28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE01B1F9DB700182F82 /* CircleView.m */; };
 		28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE31B1FA01600182F82 /* CircularButton.m */; };
+		28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE61B1FCF3700182F82 /* FindViewController.m */; };
+		28CDAFEB1B1FDD5000182F82 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFEA1B1FDD5000182F82 /* SettingsViewController.m */; };
 		28DDD19C1B1D28EE0037045B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19B1B1D28EE0037045B /* main.m */; };
 		28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19E1B1D28EE0037045B /* AppDelegate.m */; };
 		28DDD1A21B1D28EE0037045B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD1A11B1D28EE0037045B /* MainViewController.m */; };
@@ -45,6 +47,10 @@
 		28CDAFE01B1F9DB700182F82 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		28CDAFE21B1FA01600182F82 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
 		28CDAFE31B1FA01600182F82 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
+		28CDAFE51B1FCF3700182F82 /* FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
+		28CDAFE61B1FCF3700182F82 /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
+		28CDAFE91B1FDD5000182F82 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		28CDAFEA1B1FDD5000182F82 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		28DDD1961B1D28EE0037045B /* FoundYa01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundYa01.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DDD19A1B1D28EE0037045B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28DDD19B1B1D28EE0037045B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +87,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28CDAFE81B1FDD2000182F82 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				28CDAFD61B1E433700182F82 /* Annotation.h */,
+				28CDAFD71B1E433700182F82 /* Annotation.m */,
+				28CDAFE21B1FA01600182F82 /* CircularButton.h */,
+				28CDAFE31B1FA01600182F82 /* CircularButton.m */,
+				28CDAFD91B1E6EEF00182F82 /* Overlay.h */,
+				28CDAFDA1B1E6EEF00182F82 /* Overlay.m */,
+				28CDAFDF1B1F9DB700182F82 /* CircleView.h */,
+				28CDAFE01B1F9DB700182F82 /* CircleView.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		28DDD18D1B1D28EE0037045B = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +123,7 @@
 		28DDD1981B1D28EE0037045B /* FoundYa01 */ = {
 			isa = PBXGroup;
 			children = (
+				28CDAFE81B1FDD2000182F82 /* Model */,
 				28DDD1BF1B1D2B0C0037045B /* Controllers */,
 				28DDD19D1B1D28EE0037045B /* AppDelegate.h */,
 				28DDD19E1B1D28EE0037045B /* AppDelegate.m */,
@@ -145,18 +167,14 @@
 		28DDD1BF1B1D2B0C0037045B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				28CDAFE51B1FCF3700182F82 /* FindViewController.h */,
+				28CDAFE61B1FCF3700182F82 /* FindViewController.m */,
 				28DDD1A01B1D28EE0037045B /* MainViewController.h */,
 				28DDD1A11B1D28EE0037045B /* MainViewController.m */,
 				28736EBE1B1D326400C3E544 /* MapViewController.h */,
 				28736EBF1B1D326400C3E544 /* MapViewController.m */,
-				28CDAFD61B1E433700182F82 /* Annotation.h */,
-				28CDAFD71B1E433700182F82 /* Annotation.m */,
-				28CDAFE21B1FA01600182F82 /* CircularButton.h */,
-				28CDAFE31B1FA01600182F82 /* CircularButton.m */,
-				28CDAFD91B1E6EEF00182F82 /* Overlay.h */,
-				28CDAFDA1B1E6EEF00182F82 /* Overlay.m */,
-				28CDAFDF1B1F9DB700182F82 /* CircleView.h */,
-				28CDAFE01B1F9DB700182F82 /* CircleView.m */,
+				28CDAFE91B1FDD5000182F82 /* SettingsViewController.h */,
+				28CDAFEA1B1FDD5000182F82 /* SettingsViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -268,12 +286,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */,
 				28CDAFD81B1E433700182F82 /* Annotation.m in Sources */,
 				28DDD1A21B1D28EE0037045B /* MainViewController.m in Sources */,
 				28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */,
 				28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */,
 				28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */,
 				28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */,
+				28CDAFEB1B1FDD5000182F82 /* SettingsViewController.m in Sources */,
 				28DDD19C1B1D28EE0037045B /* main.m in Sources */,
 				28736EC01B1D326400C3E544 /* MapViewController.m in Sources */,
 			);

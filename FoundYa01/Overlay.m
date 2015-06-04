@@ -14,14 +14,15 @@
 - (instancetype)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
+    self.hidden = NO;
     
     {
-        UIButton *findButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        findButton.frame = CGRectMake(60, 100, 200, 44);
-        findButton.backgroundColor = [UIColor blueColor];
-        [findButton setTitle:@"Find" forState:UIControlStateNormal];
-        [self addSubview:findButton];
-        [findButton addTarget:self action:@selector(findOptions:) forControlEvents:UIControlEventTouchUpInside];
+        UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        hideButton.frame = CGRectMake(60, 480, 200, 44);
+        hideButton.backgroundColor = [UIColor blueColor];
+        [hideButton setTitle:@"Hide" forState:UIControlStateNormal];
+        [self addSubview:hideButton];
+        [hideButton addTarget:self action:@selector(hideCircle) forControlEvents:UIControlEventTouchUpInside];
     }
     
     if (self)
@@ -40,6 +41,10 @@
     [super layoutSubviews];
     self.circleView.center = CGPointMake(CGRectGetMidX(self.bounds),
                                          CGRectGetMidY(self.bounds));
+}
+
+- (void)hideCircle {
+    self.hidden = YES;
 }
 
 
