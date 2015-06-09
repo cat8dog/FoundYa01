@@ -33,5 +33,15 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)backSelected:(UIButton *)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (IBAction)pushCustomView:(id)sender {
+    UIViewController *customViewController = (UIViewController *)[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"CustomViewController"];
+    [self.navigationController pushViewController:customViewController animated:YES];
+}
 
 @end

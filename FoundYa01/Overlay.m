@@ -16,15 +16,6 @@
     self = [super initWithFrame:frame];
     self.hidden = NO;
     
-    {
-        UIButton *hideButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        hideButton.frame = CGRectMake(60, 480, 200, 44);
-        hideButton.backgroundColor = [UIColor blueColor];
-        [hideButton setTitle:@"Hide" forState:UIControlStateNormal];
-        [self addSubview:hideButton];
-        [hideButton addTarget:self action:@selector(hideCircle) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
     if (self)
     {
 

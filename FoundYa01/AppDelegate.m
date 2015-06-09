@@ -1,12 +1,5 @@
-//
-//  AppDelegate.m
-//  FoundYa01
-//
-//  Created by Catherine Reyto on 2015-06-01.
-//  Copyright (c) 2015 Catherine Reyto. All rights reserved.
-//
-
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
 
 @interface AppDelegate ()
 
@@ -16,6 +9,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [Parse setApplicationId:@"NPNgyV4EoyrDmvl7fTRgYxn4Kh9XOkBeMTYKwyfw" clientKey:@"QW2wazJRsIEg388a062frvEvyokUjB0xXrBD4La8"];
     // Override point for customization after application launch.
     return YES;
 }

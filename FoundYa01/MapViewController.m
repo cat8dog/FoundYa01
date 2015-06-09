@@ -8,7 +8,7 @@
 
 #import "MapViewController.h"
 #define METERS_PER_MILE 1609.344
-#import "Overlay.h"
+
 
 @interface MapViewController ()
 
@@ -24,7 +24,6 @@
     {
         self.title = @"Map View";
         self.tabBarItem.image = [UIImage imageNamed:@"Map View"];
-       
         
     }
     return self;
@@ -34,12 +33,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    _mapView = [[MKMapView alloc]initWithFrame:self.view.frame];
-    [self.view addSubview:_mapView];
-    self.mapView.delegate = self;
+    self.overlay = [[Overlay alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:self.overlay];
+    self.overlay.hidden = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnOverlay:)];
+    [self.overlay addGestureRecognizer:tapGesture];
+    //_mapView = [[MKMapView alloc]initWithFrame:self.view.frame];
+    //[self.view addSubview:_mapView];
+    //self.mapView.delegate = self;
     self.locationManager = [[CLLocationManager alloc] init];
     
+    UILongPressGestureRecognizer *longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
+    longGesture.minimumPressDuration = 1.0;
+    
+    [_mapView addGestureRecognizer:longGesture];
     if(IS_OS_8_OR_LATER)
         
     {
@@ -53,15 +60,37 @@
         _mapView.showsPointsOfInterest = YES;
     
     UIButton *findButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    findButton.frame = CGRectMake(150, 30, 120, 60);
+    findButton.frame = CGRectMake(150, 80, 100, 60);
     findButton.backgroundColor = [UIColor blackColor];
     [findButton setTitle:@"find" forState:UIControlStateNormal];
     [_mapView addSubview:findButton];
     [findButton addTarget:self action:@selector(getOptions:) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    UIButton *tagsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    tagsButton.frame = CGRectMake(150, 600, 100, 60);
+    tagsButton.backgroundColor = [UIColor blackColor];
+    [tagsButton setTitle:@"tags" forState:UIControlStateNormal];
+    [_mapView addSubview:tagsButton];
+    [tagsButton addTarget:self action:@selector(viewTags:) forControlEvents:UIControlEventTouchUpInside];
+    
     // Do any additional setup after loading the view.
     
 
+}
+
+- (void)didLongPress:(UILongPressGestureRecognizer *)sender
+{
+    CGPoint location = [sender locationInView:_mapView];
+    CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
+    
+//    Annotation *annotation = [[Annotation alloc] initWithLocation:coordinate];
+//    [_mapView addAnnotation:coordinate];
+//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 0.1*METERS_PER_MILE, 0.1*METERS_PER_MILE);
+    
+//    // 3
+//    [_mapView setRegion:viewRegion animated:YES];
+    self.overlay.hidden = NO;
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -101,13 +130,11 @@
     zoomLocation.longitude= -79.387057;
     Annotation *annotation = [[Annotation alloc] initWithLocation:zoomLocation];
     [_mapView addAnnotation: annotation];
-    // Zoom function: region made around user location centre point with a given width / height
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
     
-    // 3
-    [_mapView setRegion:viewRegion animated:YES];
-}
+    // Zoom function: region made around user location centre point with a given width / height
+  }
 
+// AlertView (Callout for pin Preview)
 //- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 //{
 //    // annotation
@@ -123,22 +150,48 @@
 //    view.enabled = YES;
 //}
 
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+        
+        // 3
+        [_mapView setRegion:viewRegion animated:YES];
+    });
+}
+
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    Overlay *overlay = [[Overlay alloc] initWithFrame:self.view.bounds];
-   
-    [self.view addSubview:overlay];
-    [self.view bringSubviewToFront:overlay];
-//}
-//
+    self.overlay.hidden = NO;
+    [self.view bringSubviewToFront:self.overlay];
+    
     
 }
+
 -(void)getOptions:(UIButton *)sender {
     
-    [self performSegueWithIdentifier:@"findOptions" sender:self];
+    [self performSegueWithIdentifier:@"getOptions" sender:self];
     
-    //[self presentViewController:<#(UIViewController *)#>FindViewController animated:YES];
+
 }
+
+-(void)viewTags:(UIButton *)sender {
+    
+    [self performSegueWithIdentifier:@"viewTags" sender:self];
+    
+}
+
+- (IBAction)pushDiscoverView:(id)sender {
+    UIViewController *discoverViewController = (UIViewController *)[[UIStoryboard storyboardWithName:@"Main"
+    bundle:nil] instantiateViewControllerWithIdentifier:@"DiscoverViewController"];
+    [self.navigationController pushViewController:discoverViewController animated:YES];
+}
+
+- (void)didTapOnOverlay:(id)sender {
+    self.overlay.hidden = YES;
+}
+
 /*
 #pragma mark - Navigation
 
