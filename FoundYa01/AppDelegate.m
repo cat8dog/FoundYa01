@@ -11,9 +11,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     [Parse setApplicationId:@"NPNgyV4EoyrDmvl7fTRgYxn4Kh9XOkBeMTYKwyfw" clientKey:@"QW2wazJRsIEg388a062frvEvyokUjB0xXrBD4La8"];
+    
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    PFUser *user = [PFUser user];
+    [user setObject:@"" forKey:@"userName"];
+    [user setObject:@"" forKey:@"passWord"];
+    [user saveInBackground];
+    
     // Override point for customization after application launch.
     return YES;
+//    
+//    return [[FBSDKApplicationDelegate sharedInstance] application:application
+//                                                          openURL:url
+//                                                sourceApplication:sourceApplication
+//                                                       Annotation:annotation];
 }
+
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

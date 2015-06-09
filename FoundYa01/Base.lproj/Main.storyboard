@@ -84,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROR-7F-iq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1868" y="-569"/>
+            <point key="canvasLocation" x="1336" y="-545"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="1Qt-5Z-UgS">
@@ -158,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4uy-GM-63q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2936" y="-569"/>
+            <point key="canvasLocation" x="2258" y="-545"/>
         </scene>
         <!--Custom View Controller-->
         <scene sceneID="ZEB-R1-iYo">
@@ -240,6 +240,7 @@
                         <outlet property="passwordAgainField" destination="MA9-du-eBJ" id="Z06-70-W0t"/>
                         <outlet property="passwordField" destination="1OI-mD-ZGu" id="sXr-BH-JYK"/>
                         <outlet property="usernameField" destination="H6a-1r-LMh" id="BLX-6I-T7v"/>
+                        <segue destination="RSg-RQ-UdG" kind="push" identifier="gotoMap" id="cOZ-86-v34"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsp-FB-D6O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -303,29 +304,12 @@
                         <outlet property="passwordField" destination="3qJ-aW-lfr" id="gMQ-Yh-tr2"/>
                         <outlet property="signUp" destination="nGI-tq-LWU" id="aq0-r4-cVm"/>
                         <outlet property="usernameField" destination="qhs-yU-uO5" id="p3Y-45-D1Z"/>
+                        <segue destination="RSg-RQ-UdG" kind="push" identifier="gotoMap" id="Us8-oK-tza"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oo-u6-rZk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="868" y="-563"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="q4B-Nn-JCA">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Qbu-wK-vpW" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ErD-AW-fT4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="RSg-RQ-UdG" kind="relationship" relationship="rootViewController" id="Cp9-n1-ybO"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uuE-TZ-tSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1336" y="-569"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nPn-6d-u62">
@@ -343,7 +327,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGE-xf-c6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2516" y="-569"/>
+            <point key="canvasLocation" x="1804" y="-545"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hhw-2P-dxJ">
@@ -372,4 +356,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Us8-oK-tza"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -13,6 +13,7 @@
 }
 
 - (IBAction)userLogin:(id)sender {
+    [self processFieldEntries];
 }
 
 - (void)processFieldEntries
@@ -72,8 +73,7 @@
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser *user, NSError *error){
         if (user)
         {
-            //login finished, go to main screen.
-            //            [self performSegueWithIdentifier:@"some thing" sender:nil];
+            [self performSegueWithIdentifier:@"gotoMap" sender:nil];
         }
         else
         {
@@ -82,5 +82,6 @@
         }
     }];
 }
+
 
 @end
