@@ -1,11 +1,7 @@
-//
-//  SettingsViewController.m
-//  FoundYa01
-//
-//  Created by Catherine Reyto on 2015-06-03.
-//  Copyright (c) 2015 Catherine Reyto. All rights reserved.
-//
-
+#import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()

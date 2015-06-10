@@ -1,10 +1,3 @@
-//
-//  MapViewController.m
-//  FoundYa01
-//
-//  Created by Catherine Reyto on 2015-06-01.
-//  Copyright (c) 2015 Catherine Reyto. All rights reserved.
-//
 
 #import "MapViewController.h"
 #define METERS_PER_MILE 1609.344
@@ -15,6 +8,11 @@
 @end
 
 @implementation MapViewController
+
+- (IBAction)popLogin:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,6 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     
     self.overlay = [[Overlay alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.overlay];
@@ -66,6 +65,9 @@
     [_mapView addSubview:findButton];
     [findButton addTarget:self action:@selector(getOptions:) forControlEvents:UIControlEventTouchUpInside];
     
+    // temporary "back" button
+    
+    
     
     UIButton *tagsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     tagsButton.frame = CGRectMake(150, 600, 100, 60);
@@ -81,16 +83,30 @@
 
 - (void)didLongPress:(UILongPressGestureRecognizer *)sender
 {
-    CGPoint location = [sender locationInView:_mapView];
-    CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
-    
-//    Annotation *annotation = [[Annotation alloc] initWithLocation:coordinate];
-//    [_mapView addAnnotation:coordinate];
-//    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 0.1*METERS_PER_MILE, 0.1*METERS_PER_MILE);
-    
-//    // 3
-//    [_mapView setRegion:viewRegion animated:YES];
-    self.overlay.hidden = NO;
+    switch (sender.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            CGPoint location = [sender locationInView:_mapView];
+            CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
+            
+            Annotation *annotation = [[Annotation alloc] initWithLocation:coordinate];
+            
+            [_mapView addAnnotation:annotation];
+       
+//            MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 0.01*METERS_PER_MILE, 0.01*METERS_PER_MILE);
+//
+            // 3
+//            [_mapView setRegion:viewRegion animated:YES];
+            [_mapView setCenterCoordinate:coordinate animated:YES];
+            self.overlay.hidden = NO;
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -182,15 +198,23 @@
     
 }
 
-- (IBAction)pushDiscoverView:(id)sender {
-    UIViewController *discoverViewController = (UIViewController *)[[UIStoryboard storyboardWithName:@"Main"
-    bundle:nil] instantiateViewControllerWithIdentifier:@"DiscoverViewController"];
-    [self.navigationController pushViewController:discoverViewController animated:YES];
-}
+//- (IBAction)pushDiscoverView:(id)sender {
+//    UIViewController *discoverViewController = (UIViewController *)[[UIStoryboard storyboardWithName:@"Main"
+//    bundle:nil] instantiateViewControllerWithIdentifier:@"DiscoverViewController"];
+//    [self.navigationController pushViewController:discoverViewController animated:YES];
+//}
+
+//- (IBAction)unwindToLogin {
+//    [self performSegueWithIdentifier:@"unwindToLogin" sender:self];
+//}
+    
+
+
 
 - (void)didTapOnOverlay:(id)sender {
     self.overlay.hidden = YES;
 }
+
 
 /*
 #pragma mark - Navigation

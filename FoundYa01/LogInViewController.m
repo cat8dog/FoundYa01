@@ -1,5 +1,9 @@
 #import "LogInViewController.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+
 
 @interface LogInViewController ()
 
@@ -7,14 +11,37 @@
 
 @implementation LogInViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
    
+    
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        [self openMapView:nil];
+ 
+    
+    } else {
+        [self processFieldEntries];
+    }
 }
+
 
 - (IBAction)userLogin:(id)sender {
     [self processFieldEntries];
+//    [NSTimeZone setDefaultTimeZone:[NSTimeZone localTimeZone]];
+    
 }
+
+- (IBAction)openMapView:(id) sender
+{ NSLog(@"BAM!!!");
+    UIViewController *MapViewController = (UIViewController *)[[UIStoryboard storyboardWithName:@"Main"
+    bundle:nil] instantiateViewControllerWithIdentifier:@"MapViewController"];
+    [self.navigationController pushViewController:MapViewController animated:YES];
+}
+
+
 
 - (void)processFieldEntries
 
@@ -82,6 +109,11 @@
         }
     }];
 }
+
+
+    
+
+
 
 
 @end

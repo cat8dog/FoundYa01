@@ -1,5 +1,7 @@
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface AppDelegate ()
 
@@ -8,23 +10,31 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    
-    [Parse setApplicationId:@"NPNgyV4EoyrDmvl7fTRgYxn4Kh9XOkBeMTYKwyfw" clientKey:@"QW2wazJRsIEg388a062frvEvyokUjB0xXrBD4La8"];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {[Parse setApplicationId:@"NPNgyV4EoyrDmvl7fTRgYxn4Kh9XOkBeMTYKwyfw" clientKey:@"QW2wazJRsIEg388a062frvEvyokUjB0xXrBD4La8"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    [FBSDKLoginButton class];
     PFUser *user = [PFUser user];
     [user setObject:@"" forKey:@"userName"];
     [user setObject:@"" forKey:@"passWord"];
     [user saveInBackground];
-    
-    // Override point for customization after application launch.
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                    didFinishLaunchingWithOptions:launchOptions];
+           
+
     return YES;
-//    
-//    return [[FBSDKApplicationDelegate sharedInstance] application:application
-//                                                          openURL:url
-//                                                sourceApplication:sourceApplication
-//                                                       Annotation:annotation];
+
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            sourceApplication:(NSString *)sourceApplication
+            annotation:(id)annotation {
+    
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
 }
 
 
@@ -44,6 +54,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    [FBSDKAppEvents activateApp];
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 

@@ -34,7 +34,7 @@
         <!--Map View Controller-->
         <scene sceneID="cfQ-90-Rt6">
             <objects>
-                <viewController storyboardIdentifier="InitialMapScene" id="RSg-RQ-UdG" customClass="MapViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="RSg-RQ-UdG" customClass="MapViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k6l-aG-D01"/>
                         <viewControllerLayoutGuide type="bottom" id="1A3-l1-qdI"/>
@@ -61,7 +61,7 @@
                     <navigationItem key="navigationItem" id="HTf-O4-Vvq">
                         <barButtonItem key="leftBarButtonItem" title="Discover" id="ucY-i0-Oxv">
                             <connections>
-                                <action selector="pushDiscoverView:" destination="RSg-RQ-UdG" id="Ecw-Wq-j2A"/>
+                                <action selector="popLogin:" destination="RSg-RQ-UdG" id="gwB-e7-119"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="C9r-fq-0Qj">
@@ -226,7 +226,7 @@
                     <navigationItem key="navigationItem" id="NDj-2E-Suz">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="5iz-Qu-XuV">
                             <connections>
-                                <action selector="popMyself:" destination="ahB-EV-Sh3" id="iNt-yD-QVG"/>
+                                <action selector="popLogin:" destination="ahB-EV-Sh3" id="afE-oF-5cb"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Done" id="ble-SW-lEd">
@@ -236,7 +236,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="entryDone" destination="ble-SW-lEd" id="Mod-eO-YBQ"/>
                         <outlet property="passwordAgainField" destination="MA9-du-eBJ" id="Z06-70-W0t"/>
                         <outlet property="passwordField" destination="1OI-mD-ZGu" id="sXr-BH-JYK"/>
                         <outlet property="usernameField" destination="H6a-1r-LMh" id="BLX-6I-T7v"/>
@@ -290,12 +289,13 @@
                                     <action selector="userLogin:" destination="mNi-JF-ZRd" eventType="touchUpInside" id="elZ-C1-zVU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lVh-E8-eBA">
-                                <rect key="frame" x="59" y="454" width="176" height="30"/>
-                                <state key="normal" title="Log In Through Facebook">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="epj-Pe-Dwc" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="67" y="449" width="165" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="openMapView:" destination="mNi-JF-ZRd" eventType="valueChanged" id="Y4E-4b-Wy3"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

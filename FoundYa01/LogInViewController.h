@@ -8,4 +8,9 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *signUp;
 
+- (IBAction)fbLoginButton:(id)sender;
+
+
+
+
 @end
