@@ -1,4 +1,5 @@
 #import <UIKit/UIKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface LogInViewController : UIViewController
 
@@ -8,8 +9,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *signUp;
 
-- (IBAction)fbLoginButton:(id)sender;
+@property (nonatomic, assign) BOOL shouldShowMap;
 
+//- (IBAction)fbLoginButton:(id)sender;
+
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *fbLoginButton;
 
 
 

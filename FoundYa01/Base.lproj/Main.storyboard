@@ -244,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xsp-FB-D6O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="868" y="145"/>
+            <point key="canvasLocation" x="868" y="203"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="2ja-Px-VT8">
@@ -292,15 +292,13 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="epj-Pe-Dwc" customClass="FBSDKLoginButton">
                                 <rect key="frame" x="67" y="449" width="165" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="openMapView:" destination="mNi-JF-ZRd" eventType="valueChanged" id="Y4E-4b-Wy3"/>
-                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="Fzb-mG-Yuq"/>
                     <connections>
+                        <outlet property="fbLoginButton" destination="epj-Pe-Dwc" id="iXu-td-P8w"/>
                         <outlet property="passwordField" destination="3qJ-aW-lfr" id="gMQ-Yh-tr2"/>
                         <outlet property="signUp" destination="nGI-tq-LWU" id="aq0-r4-cVm"/>
                         <outlet property="usernameField" destination="qhs-yU-uO5" id="p3Y-45-D1Z"/>

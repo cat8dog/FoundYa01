@@ -1,5 +1,6 @@
 
 #import "MapViewController.h"
+#import "LogInViewController.h"
 #define METERS_PER_MILE 1609.344
 
 
@@ -9,8 +10,11 @@
 
 @implementation MapViewController
 
+// adjust below to former [self.navigationController popViewControllerAnimated:YES]; once finished.
+
 - (IBAction)popLogin:(id)sender
 {
+//    ((LogInViewController *) self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1]).shouldShowMap = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -117,7 +121,7 @@
     
     if (!view)
     {
-        view=[[MKPinAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseID];
+        view=[[MKAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseID];
         view.image = [UIImage imageNamed:@"poop_smiley1"];
         
 //        //UIImageView* image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];

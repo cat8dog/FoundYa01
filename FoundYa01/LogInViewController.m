@@ -3,9 +3,9 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <FBSDKShareKit/FBSDKShareKit.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 
-
-@interface LogInViewController ()
+@interface LogInViewController ()<FBSDKLoginButtonDelegate>
 
 @end
 
@@ -14,19 +14,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-   
-    
-    PFUser *currentUser = [PFUser currentUser];
-    if (currentUser) {
-        [self openMapView:nil];
- 
-    
-    } else {
-        [self processFieldEntries];
-    }
+    self.fbLoginButton.delegate = self;
+//    self.fbLoginButton.readPermissions = @[@"birthday",@"bio",@"education",@"work",@"picture"];
 }
-
 
 - (IBAction)userLogin:(id)sender {
     [self processFieldEntries];
@@ -38,7 +28,7 @@
 { NSLog(@"BAM!!!");
     UIViewController *MapViewController = (UIViewController *)[[UIStoryboard storyboardWithName:@"Main"
     bundle:nil] instantiateViewControllerWithIdentifier:@"MapViewController"];
-    [self.navigationController pushViewController:MapViewController animated:YES];
+    [self.navigationController pushViewController:MapViewController animated:NO];
 }
 
 
@@ -112,8 +102,45 @@
 
 
     
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+        if ([PFUser currentUser]) {
+            [self openMapView:nil];
+        }
+}
 
+- (void)loginButton:(FBSDKLoginButton *)loginButton didCompleteWithResult:(FBSDKLoginManagerLoginResult *)result error:(NSError *)error
+{
+    if (error)
+    {
+        //show a alert
+        return;
+    }
+    [PFFacebookUtils logInInBackgroundWithAccessToken:result.token block:^(PFUser *user, NSError *error){
+        if (error)
+        {
+            //show a alert.
+            return;
+        }
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,name,gender,birthday,bio,education,work,picture" parameters:nil];
+        
+        __weak typeof(self) weakSelf = self;
+        [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+            NSDictionary *userInfo = result;
+            PFUser *currentUser = [PFUser currentUser];
+            currentUser[@"name"] = userInfo[@"name"];
+            currentUser[@"gender"] = userInfo[@"gender"];
+            NSDictionary *photoInfo = userInfo[@"picture"][@"data"];
+            currentUser[@"photo_url"] = photoInfo[@"url"];
+            [currentUser saveInBackground];
+            [weakSelf openMapView:nil];
+        }];
+    }];
+}
 
-
+- (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton
+{
+        
+}
 
 @end

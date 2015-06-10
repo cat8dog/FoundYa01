@@ -13,11 +13,11 @@
 }
 
 
-//-(void)pushToMap {
-//    
-//    [self performSegueWithIdentifier:@"gotoMap" sender:nil];
-//    
-//}
+-(void)pushToMap {
+    
+    [self performSegueWithIdentifier:@"gotoMap" sender:nil];
+    
+}
 
 
 

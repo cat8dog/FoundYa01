@@ -2,7 +2,7 @@
 #import <Parse/Parse.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 @interface AppDelegate ()
 
 @end
@@ -18,12 +18,10 @@
     [user setObject:@"" forKey:@"userName"];
     [user setObject:@"" forKey:@"passWord"];
     [user saveInBackground];
+    
+    [PFFacebookUtils initializeFacebookWithApplicationLaunchOptions:launchOptions];
     return [[FBSDKApplicationDelegate sharedInstance] application:application
                                     didFinishLaunchingWithOptions:launchOptions];
-           
-
-    return YES;
-
 }
 
 - (BOOL)application:(UIApplication *)application

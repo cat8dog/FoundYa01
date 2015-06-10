@@ -23,7 +23,6 @@
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) UIButton *findButton;
 @property (strong, nonatomic) Overlay *overlay;
--(void) hideCircle;
 -(void) getOptions;
 -(void) unwindToLogin;
 

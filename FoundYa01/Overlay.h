@@ -15,4 +15,6 @@
 
 @property (nonatomic, strong) UIButton *findButton;
 
+-(void) hideCircle;
+
 @end
