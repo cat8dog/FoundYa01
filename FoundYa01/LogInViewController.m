@@ -32,6 +32,15 @@
 }
 
 
+- (IBAction)openProfileView:(id) sender
+{ NSLog(@"BAM!!!");
+    UITableViewController *ProfileTableViewController = (UITableViewController *)[[UIStoryboard storyboardWithName:@"Main"
+    bundle:nil] instantiateViewControllerWithIdentifier:@"ProfileTableViewController"];
+    [self.navigationController pushViewController:ProfileTableViewController animated:NO];
+}
+
+
+
 
 - (void)processFieldEntries
 
@@ -133,7 +142,7 @@
             NSDictionary *photoInfo = userInfo[@"picture"][@"data"];
             currentUser[@"photo_url"] = photoInfo[@"url"];
             [currentUser saveInBackground];
-            [weakSelf openMapView:nil];
+            [weakSelf openProfileView:nil];
         }];
     }];
 }

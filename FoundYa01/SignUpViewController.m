@@ -12,14 +12,17 @@
 
 }
 
+//
+//-(void)pushToMap {
+//    
+//    [self performSegueWithIdentifier:@"gotoMap" sender:nil];
+//    
+//}
 
--(void)pushToMap {
-    
-    [self performSegueWithIdentifier:@"gotoMap" sender:nil];
-    
+
+- (void)pushToProfile {
+    [self performSegueWithIdentifier:@"goToProfile" sender:nil];
 }
-
-
 
 - (IBAction)imDone:(id)sender {
     NSLog(@"buttton clicked");
@@ -90,7 +93,7 @@
                      return;
                  }
                      // Handle the success path
-                     [self pushToMap];
+                     [self pushToProfile];
                 
              }];
         }

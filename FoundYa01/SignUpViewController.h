@@ -9,5 +9,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *entryDone;
 -(void) processFieldEntries;
--(void) pushToMap;
+//-(void) pushToMap;
+-(void) pushToProfile;
 @end

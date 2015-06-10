@@ -31,7 +31,6 @@
 		28CDB0261B22301500182F82 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDB0251B22301500182F82 /* DiscoverViewController.m */; };
 		28DDD19C1B1D28EE0037045B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19B1B1D28EE0037045B /* main.m */; };
 		28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19E1B1D28EE0037045B /* AppDelegate.m */; };
-		28DDD1A21B1D28EE0037045B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD1A11B1D28EE0037045B /* MainViewController.m */; };
 		28DDD1A51B1D28EE0037045B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28DDD1A31B1D28EE0037045B /* Main.storyboard */; };
 		28DDD1A71B1D28EE0037045B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28DDD1A61B1D28EE0037045B /* Images.xcassets */; };
 		28DDD1AA1B1D28EE0037045B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28DDD1A81B1D28EE0037045B /* LaunchScreen.xib */; };
@@ -45,6 +44,7 @@
 		28FC11841B28930B00DA3019 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FC11811B28930B00DA3019 /* FBSDKShareKit.framework */; };
 		28FC11851B28930B00DA3019 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FC11821B28930B00DA3019 /* FBSDKLoginKit.framework */; };
 		28FC11861B28930B00DA3019 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28FC11831B28930B00DA3019 /* FBSDKCoreKit.framework */; };
+		28FC11891B28FAAC00DA3019 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FC11881B28FAAC00DA3019 /* ProfileTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,8 +97,6 @@
 		28DDD19B1B1D28EE0037045B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		28DDD19D1B1D28EE0037045B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		28DDD19E1B1D28EE0037045B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		28DDD1A01B1D28EE0037045B /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		28DDD1A11B1D28EE0037045B /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		28DDD1A41B1D28EE0037045B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		28DDD1A61B1D28EE0037045B /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28DDD1A91B1D28EE0037045B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -114,6 +112,8 @@
 		28FC11811B28930B00DA3019 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../FrameWorks/FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		28FC11821B28930B00DA3019 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../FrameWorks/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		28FC11831B28930B00DA3019 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../FrameWorks/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		28FC11871B28FAAC00DA3019 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileTableViewController.h; sourceTree = "<group>"; };
+		28FC11881B28FAAC00DA3019 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,8 +182,6 @@
 			children = (
 				28CDAFE51B1FCF3700182F82 /* FindViewController.h */,
 				28CDAFE61B1FCF3700182F82 /* FindViewController.m */,
-				28DDD1A01B1D28EE0037045B /* MainViewController.h */,
-				28DDD1A11B1D28EE0037045B /* MainViewController.m */,
 				28736EBE1B1D326400C3E544 /* MapViewController.h */,
 				28736EBF1B1D326400C3E544 /* MapViewController.m */,
 				28C6A2901B223EA500043773 /* TagsTableViewController.h */,
@@ -210,6 +208,8 @@
 		28DDD18D1B1D28EE0037045B = {
 			isa = PBXGroup;
 			children = (
+				28FC11871B28FAAC00DA3019 /* ProfileTableViewController.h */,
+				28FC11881B28FAAC00DA3019 /* ProfileTableViewController.m */,
 				28C6A2AA1B264CD700043773 /* libsqlite3.dylib */,
 				28DDD1981B1D28EE0037045B /* FoundYa01 */,
 				28DDD1B21B1D28EE0037045B /* FoundYa01Tests */,
@@ -406,9 +406,9 @@
 				28C6A2951B26250F00043773 /* LogInViewController.m in Sources */,
 				28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */,
 				28C6A2921B223EA500043773 /* TagsTableViewController.m in Sources */,
+				28FC11891B28FAAC00DA3019 /* ProfileTableViewController.m in Sources */,
 				28CDB0261B22301500182F82 /* DiscoverViewController.m in Sources */,
 				28CDAFD81B1E433700182F82 /* Annotation.m in Sources */,
-				28DDD1A21B1D28EE0037045B /* MainViewController.m in Sources */,
 				28CDB0231B222F2600182F82 /* CustomViewController.m in Sources */,
 				28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */,
 				28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */,
