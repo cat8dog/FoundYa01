@@ -131,14 +131,16 @@
             //show a alert.
             return;
         }
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,name,gender,birthday,bio,education,work,picture" parameters:nil];
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,name,gender,birthday,bio,work,picture(500,500)" parameters:nil];
         
         __weak typeof(self) weakSelf = self;
         [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
             NSDictionary *userInfo = result;
             PFUser *currentUser = [PFUser currentUser];
-            currentUser[@"name"] = userInfo[@"name"];
+            currentUser[@"location"] = userInfo[@"location"];
             currentUser[@"gender"] = userInfo[@"gender"];
+            currentUser[@"birthday"] = userInfo[@"birthday"];
+            currentUser[@"bio"] = userInfo[@"bio"];
             NSDictionary *photoInfo = userInfo[@"picture"][@"data"];
             currentUser[@"photo_url"] = photoInfo[@"url"];
             [currentUser saveInBackground];

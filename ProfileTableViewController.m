@@ -1,93 +1,144 @@
 #import "ProfileTableViewController.h"
 #import "LoginViewController.h"
+#import <Parse/Parse.h>
+#import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import "SignUpViewController.h"
+#import "ProfileHeaderView.h"
 
 @interface ProfileTableViewController ()
 
 @end
 
 @implementation ProfileTableViewController
+{
+    UIImage *_profileImage;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    
+    self.rowTitleArray = [[NSMutableArray alloc]initWithArray:@[@"Location",@"Gender",@"Birthday",@"Bio"]];
+    self.rowDataArray = [[NSMutableArray alloc]initWithArray:@[@"",@"",@"",@""]];
+    
+    [self _updateProfileData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    
+    [self.tableView registerClass:[ProfileHeaderView class] forHeaderFooterViewReuseIdentifier:@"header"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"photo_url"]]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            UIImage *image = [UIImage imageWithData:data];
+            _profileImage = image;
+            [self.tableView reloadData];
+        });
+    });
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return [self.rowTitleArray count];
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *identifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];
+        // can't select these cells
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+     // Display the data in the table
+    cell.textLabel.text = self.rowTitleArray[indexPath.row];
+    cell.detailTextLabel.text = self.rowDataArray[indexPath.row];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+
+
+// Set received values if they are not nil and reload the table
+- (void)_updateProfileData {
+    NSLog(@"update profile data");
+    NSString *location = [PFUser currentUser][@"location"];
+    if (location) {
+        self.rowDataArray[0] = location;
+    }
+    
+    NSString *gender = [PFUser currentUser][@"gender"];
+    if (gender) {
+        self.rowDataArray[1] = gender;
+    }
+    
+    NSString *birthday = [PFUser currentUser][@"birthday"];
+    if (birthday) {
+        self.rowDataArray[2] = birthday;
+    }
+    
+    NSString *bio = [PFUser currentUser][@"bio"];
+    if (bio) {
+        self.rowDataArray[3] = bio;
+    }
+    
+    NSLog(@"%@",self.rowDataArray);
+    [self.tableView reloadData];
+
+    // set the name in the header view label
+    NSString *name = [PFUser currentUser][@"name"];
+    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"picture"]]];
+    [UIImage imageWithData:data];
+    if (name) {
+        self.headerNameLabel.text = name;
+    }
+    
+    // set the photo
+    NSString *userProfilePhotoURLString = [PFUser currentUser][@"pictureURL"];
+    if (userProfilePhotoURLString) {
+//        self.headerImageView.image = [UIImage imageWithData:data];
+        
+        // Add a nice corner radius to the image
+        self.headerImageView.layer.cornerRadius = 8.0f;
+        self.headerImageView.layer.masksToBounds = YES;
+    } else {
+        NSLog(@"Failed to load profile photo.");
+ 
+    }
+    
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 100.0f;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ProfileHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
+//    headerView.contentView.backgroundColor = [UIColor
+    headerView.avatarView.image = _profileImage;
+    return headerView;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 350.0f;
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
