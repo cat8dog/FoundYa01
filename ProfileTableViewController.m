@@ -9,7 +9,7 @@
 
 @end
 
-@implementation ProfileTableViewController
+@implementation ProfileTableViewController 
 {
     UIImage *_profileImage;
 }
@@ -17,7 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    self.saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.saveButton.frame = CGRectMake(0.0, CGRectGetHeight(self.view.bounds) - 50.0f, CGRectGetWidth(self.view.bounds), 50.0f);
     
+    self.saveButton.backgroundColor = [UIColor blackColor];
+    [self.saveButton setTitle:@"save" forState:UIControlStateNormal];
+    [self.view addSubview:self.saveButton];
+    [self.saveButton addTarget:self action:@selector(saveToParse:) forControlEvents:UIControlEventTouchUpInside];
     
     self.rowTitleArray = [[NSMutableArray alloc]initWithArray:@[@"Location",@"Gender",@"Birthday",@"Bio"]];
     self.rowDataArray = [[NSMutableArray alloc]initWithArray:@[@"",@"",@"",@""]];
@@ -45,6 +51,8 @@
             [self.tableView reloadData];
         });
     });
+    
+    [self.view bringSubviewToFront:self.saveButton];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
@@ -65,10 +73,67 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
      // Display the data in the table
-    cell.textLabel.text = self.rowTitleArray[indexPath.row];
-    cell.detailTextLabel.text = self.rowDataArray[indexPath.row];
+//    ****OLD CODE
+//    cell.textLabel.text = self.rowTitleArray[indexPath.row];
+//    cell.detailTextLabel.text = self.rowDataArray[indexPath.row];
+//    
+//    return cell;
     
+//    *****NEW CODE
+    
+    if (self.didAriveFromFirstTimeSignUp == YES) {
+        
+    
+        if (indexPath.row == 0){
+            //self.locationField = [[UITextField alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
+            self.locationField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
+            self.locationField.placeholder = self.rowDataArray[indexPath.row];
+            self.locationField.autocorrectionType = UITextAutocorrectionTypeNo;
+            [self.locationField setClearButtonMode:UITextFieldViewModeWhileEditing];
+            //cell.accessoryView = self.locationField;
+            [cell addSubview:self.locationField];
+        }
+        
+        if (indexPath.row == 1){
+            self.genderField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
+            self.genderField.placeholder = self.rowDataArray[indexPath.row];
+            self.genderField.autocorrectionType = UITextAutocorrectionTypeNo;
+            [self.genderField setClearButtonMode:UITextFieldViewModeWhileEditing];
+            //cell.accessoryView = self.genderField;
+            [cell addSubview:self.genderField];
+        }
+        
+        if (indexPath.row == 2){
+            self.birthdayField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
+            self.birthdayField.placeholder = self.rowDataArray[indexPath.row];
+            self.birthdayField.autocorrectionType = UITextAutocorrectionTypeNo;
+            [self.birthdayField setClearButtonMode:UITextFieldViewModeWhileEditing];
+            //cell.accessoryView = self.birthdayField;
+            [cell addSubview:self.birthdayField];
+        }
+        
+        if (indexPath.row == 3){
+            self.bioField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
+            self.bioField.placeholder = self.rowDataArray[indexPath.row];
+            self.bioField.autocorrectionType = UITextAutocorrectionTypeNo;
+            [self.bioField setClearButtonMode:UITextFieldViewModeWhileEditing];
+            //cell.accessoryView = self.bioField;
+            [cell addSubview:self.bioField];
+        }
+        
+        self.locationField.delegate = self;
+        self.genderField.delegate = self;
+        self.birthdayField.delegate = self;
+        self.bioField.delegate = self;
+        
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else {
+        cell.textLabel.text = self.rowTitleArray[indexPath.row];
+        cell.detailTextLabel.text = self.rowDataArray[indexPath.row];
+    }
     return cell;
+
 }
 
 
@@ -118,7 +183,7 @@
     // set the name in the header view label
     NSString *name = [PFUser currentUser][@"name"];
     if (name) {
-        self.headerNameLabel.text = name;
+//        self.headerNameLabel.text = name;
     }
     
     // set the photo
@@ -127,8 +192,8 @@
 //        self.headerImageView.image = [UIImage imageWithData:data];
         
         // Add a nice corner radius to the image
-        self.headerImageView.layer.cornerRadius = 8.0f;
-        self.headerImageView.layer.masksToBounds = YES;
+//        self.headerImageView.layer.cornerRadius = 8.0f;
+//        self.headerImageView.layer.masksToBounds = YES;
     } else {
         NSLog(@"Failed to load profile photo.");
     }
@@ -156,10 +221,14 @@
     
 - (void) buildTableView {
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.tableView.frame = self.view.bounds;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.tableView.backgroundColor = [UIColor whiteColor];
     
     [self.tableView registerClass:[ProfileHeaderView class] forHeaderFooterViewReuseIdentifier:@"header"];
+    [self.view addSubview:self.tableView];
 }
 
 - (void) newSignupUser {
@@ -170,6 +239,37 @@
 
 }
 
-
+-(void)saveToParse:(UIButton *)sender{
+    
+    NSString *location = self.locationField.text;
+    NSString *gender = self.genderField.text;
+    NSString *birthday = self.birthdayField.text;
+    NSString *bio = self.bioField.text;
+    
+    PFUser *user = [PFUser user];
+    user[@"location"] = location;
+    user[@"gender"]= gender;
+    user[@"birthday"] = birthday;
+    user[@"bio"] = bio;
+    
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error userInfo][@"error"]
+                                                                message:nil
+                                                               delegate:self
+                                                      cancelButtonTitle:nil
+                                                      otherButtonTitles:@"OK", nil];
+            [alertView show];
+            
+            // Bring the keyboard back up, because they'll probably need to change something.
+            //[self.usernameField becomeFirstResponder];
+            return;
+        }
+        
+        // Success!
+        
+        [self performSegueWithIdentifier:@"getOptions" sender:self];
+    }];
+}
 
 @end

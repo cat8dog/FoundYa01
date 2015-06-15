@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) UIButton *findButton;
+@property (strong, nonatomic) UIButton *tagsButton;
 @property (strong, nonatomic) Overlay *overlay;
 -(void) getOptions;
 -(void) unwindToLogin;
