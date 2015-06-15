@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.fbLoginButton.delegate = self;
-//    self.fbLoginButton.readPermissions = @[@"birthday",@"bio",@"education",@"work",@"picture"];
+    self.fbLoginButton.readPermissions = @[@"user_about_me",@"user_location",@"public_profile", @"user_birthday"];
 }
 
 - (IBAction)userLogin:(id)sender {
@@ -131,20 +131,34 @@
             //show a alert.
             return;
         }
-        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=id,name,gender,birthday,bio,work,picture(500,500)" parameters:nil];
+        FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:@"me?fields=bio,birthday,location,gender,name,picture.type(square).width(500).height(500)" parameters:nil];
         
         __weak typeof(self) weakSelf = self;
         [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
-            NSDictionary *userInfo = result;
-            PFUser *currentUser = [PFUser currentUser];
-            currentUser[@"location"] = userInfo[@"location"];
-            currentUser[@"gender"] = userInfo[@"gender"];
-            currentUser[@"birthday"] = userInfo[@"birthday"];
-            currentUser[@"bio"] = userInfo[@"bio"];
-            NSDictionary *photoInfo = userInfo[@"picture"][@"data"];
-            currentUser[@"photo_url"] = photoInfo[@"url"];
-            [currentUser saveInBackground];
-            [weakSelf openProfileView:nil];
+            if (error) {
+                NSLog(@"Error:  %@", [error localizedDescription]);
+            } else {
+                NSLog(@"Result: %@", result);
+                if ([result isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *userInfo = result;
+                    PFUser *currentUser = [PFUser currentUser];
+                    if (userInfo[@"name"] &&
+                        userInfo[@"gender"] &&
+                        userInfo[@"location"][@"name"] &&
+                        userInfo[@"picture"][@"data"][@"url"]) {
+                        
+                        currentUser[@"bio"] = userInfo[@"bio"];
+                        currentUser[@"birthday"] = userInfo[@"birthday"];
+                        currentUser[@"name"] = userInfo[@"name"];
+                        currentUser[@"gender"] = userInfo[@"gender"];
+                        currentUser[@"location"] = userInfo[@"location"][@"name"];
+                        NSDictionary *photoInfo = userInfo[@"picture"][@"data"];
+                        currentUser[@"photo_url"] = photoInfo[@"url"];
+                        [currentUser saveInBackground];
+                        [weakSelf openProfileView:nil];
+                    }
+                }
+            }
         }];
     }];
 }

@@ -16,24 +16,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   
     
     
     self.rowTitleArray = [[NSMutableArray alloc]initWithArray:@[@"Location",@"Gender",@"Birthday",@"Bio"]];
     self.rowDataArray = [[NSMutableArray alloc]initWithArray:@[@"",@"",@"",@""]];
+    
     
     [self _updateProfileData];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     
+  // create a method for building tableview for both login styles:
+    [self buildTableView];
     
-    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
-    self.tableView.backgroundColor = [UIColor whiteColor];
-    
-    [self.tableView registerClass:[ProfileHeaderView class] forHeaderFooterViewReuseIdentifier:@"header"];
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -77,33 +76,47 @@
 // Set received values if they are not nil and reload the table
 - (void)_updateProfileData {
     NSLog(@"update profile data");
+    
+    
     NSString *location = [PFUser currentUser][@"location"];
     if (location) {
         self.rowDataArray[0] = location;
+    } else {
+        
+        self.rowDataArray[0] = @"Location Unknown";
     }
     
     NSString *gender = [PFUser currentUser][@"gender"];
     if (gender) {
         self.rowDataArray[1] = gender;
+    } else {
+        self.rowDataArray[1] = @"Gender Unknown";
     }
     
     NSString *birthday = [PFUser currentUser][@"birthday"];
     if (birthday) {
         self.rowDataArray[2] = birthday;
+    } else {
+        self.rowDataArray[2] = @"Birthday Unknown";
     }
     
     NSString *bio = [PFUser currentUser][@"bio"];
     if (bio) {
         self.rowDataArray[3] = bio;
+    } else {
+        self.rowDataArray[3] = @"Please tell us about yourself";
     }
     
     NSLog(@"%@",self.rowDataArray);
     [self.tableView reloadData];
 
+    if ([PFUser currentUser][@"picture"]) {
+        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"picture"]]];
+        [UIImage imageWithData:data];
+    }
+    
     // set the name in the header view label
     NSString *name = [PFUser currentUser][@"name"];
-    NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"picture"]]];
-    [UIImage imageWithData:data];
     if (name) {
         self.headerNameLabel.text = name;
     }
@@ -118,14 +131,13 @@
         self.headerImageView.layer.masksToBounds = YES;
     } else {
         NSLog(@"Failed to load profile photo.");
- 
     }
     
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100.0f;
+    return 30.0f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -140,5 +152,24 @@
 {
     return 350.0f;
 }
+
+    
+- (void) buildTableView {
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.backgroundColor = [UIColor whiteColor];
+    
+    [self.tableView registerClass:[ProfileHeaderView class] forHeaderFooterViewReuseIdentifier:@"header"];
+}
+
+- (void) newSignupUser {
+    if (self) {
+        self.didAriveFromFirstTimeSignUp = YES;
+        [self buildTableView];
+    }
+
+}
+
+
 
 @end

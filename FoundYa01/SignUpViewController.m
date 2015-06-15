@@ -1,4 +1,5 @@
 #import "SignUpViewController.h"
+#import "ProfileTableViewController.h"
 #import <Parse/Parse.h>
 
 @interface SignUpViewController ()
@@ -18,6 +19,12 @@
 //    [self performSegueWithIdentifier:@"gotoMap" sender:nil];
 //    
 //}
+
+- (IBAction)popLogin:(id)sender
+{
+    //    ((LogInViewController *) self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1]).shouldShowMap = NO;
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 - (void)pushToProfile {
@@ -102,15 +109,15 @@
     }
 
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"goToProfile"]){
+        ((ProfileTableViewController *)(segue.destinationViewController)).didAriveFromFirstTimeSignUp = YES;
+    }
 }
-*/
+
 
 
 
