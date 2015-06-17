@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 282D17C01B30C06F00B39227 /* UIViewController+Alert.m */; };
 		28736EC01B1D326400C3E544 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28736EBF1B1D326400C3E544 /* MapViewController.m */; };
 		28C6A2921B223EA500043773 /* TagsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6A2911B223EA500043773 /* TagsTableViewController.m */; };
 		28C6A2951B26250F00043773 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6A2941B26250F00043773 /* LogInViewController.m */; };
@@ -27,6 +28,7 @@
 		28DDD1B61B1D28EE0037045B /* FoundYa01Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD1B51B1D28EE0037045B /* FoundYa01Tests.m */; };
 		28FC11891B28FAAC00DA3019 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FC11881B28FAAC00DA3019 /* ProfileTableViewController.m */; };
 		28FC11AA1B2A1A6F00DA3019 /* ProfileHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FC11A91B2A1A6F00DA3019 /* ProfileHeaderView.m */; };
+		28FC11B31B2F806500DA3019 /* TextFieldTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FC11B21B2F806500DA3019 /* TextFieldTableViewCell.m */; };
 		8DB9D8EEFB1076CC18635657 /* libPods-FoundYa01.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA5CB8841FCCFEABC105C29 /* libPods-FoundYa01.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		207E2C39A4C453A013AF5930 /* Pods-FoundYa01.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoundYa01.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoundYa01/Pods-FoundYa01.release.xcconfig"; sourceTree = "<group>"; };
+		282D17BF1B30C06F00B39227 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
+		282D17C01B30C06F00B39227 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		28736EBE1B1D326400C3E544 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28736EBF1B1D326400C3E544 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		28C6A2901B223EA500043773 /* TagsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsTableViewController.h; sourceTree = "<group>"; };
@@ -81,6 +85,8 @@
 		28FC11881B28FAAC00DA3019 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTableViewController.m; path = ../ProfileTableViewController.m; sourceTree = "<group>"; };
 		28FC11A81B2A1A6F00DA3019 /* ProfileHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileHeaderView.h; sourceTree = "<group>"; };
 		28FC11A91B2A1A6F00DA3019 /* ProfileHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileHeaderView.m; sourceTree = "<group>"; };
+		28FC11B11B2F806500DA3019 /* TextFieldTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldTableViewCell.h; sourceTree = "<group>"; };
+		28FC11B21B2F806500DA3019 /* TextFieldTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldTableViewCell.m; sourceTree = "<group>"; };
 		5BA5CB8841FCCFEABC105C29 /* libPods-FoundYa01.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FoundYa01.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC48BA04229B842CB50FDEDA /* Pods-FoundYa01.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoundYa01.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FoundYa01/Pods-FoundYa01.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,10 +121,6 @@
 		28C6A2991B26468D00043773 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				28FC11871B28FAAC00DA3019 /* ProfileTableViewController.h */,
-				28FC11881B28FAAC00DA3019 /* ProfileTableViewController.m */,
-				28FC11A81B2A1A6F00DA3019 /* ProfileHeaderView.h */,
-				28FC11A91B2A1A6F00DA3019 /* ProfileHeaderView.m */,
 				28CDAFE91B1FDD5000182F82 /* SettingsViewController.h */,
 				28CDAFEA1B1FDD5000182F82 /* SettingsViewController.m */,
 				28CDB0211B222F2600182F82 /* CustomViewController.h */,
@@ -136,6 +138,12 @@
 				28C6A2941B26250F00043773 /* LogInViewController.m */,
 				28C6A2961B26291B00043773 /* SignUpViewController.h */,
 				28C6A2971B26291B00043773 /* SignUpViewController.m */,
+				28FC11871B28FAAC00DA3019 /* ProfileTableViewController.h */,
+				28FC11881B28FAAC00DA3019 /* ProfileTableViewController.m */,
+				28FC11A81B2A1A6F00DA3019 /* ProfileHeaderView.h */,
+				28FC11A91B2A1A6F00DA3019 /* ProfileHeaderView.m */,
+				28FC11B11B2F806500DA3019 /* TextFieldTableViewCell.h */,
+				28FC11B21B2F806500DA3019 /* TextFieldTableViewCell.m */,
 			);
 			name = "Log In";
 			sourceTree = "<group>";
@@ -191,6 +199,8 @@
 		28DDD1981B1D28EE0037045B /* FoundYa01 */ = {
 			isa = PBXGroup;
 			children = (
+				282D17BF1B30C06F00B39227 /* UIViewController+Alert.h */,
+				282D17C01B30C06F00B39227 /* UIViewController+Alert.m */,
 				28CDAFE81B1FDD2000182F82 /* Model */,
 				28DDD1BF1B1D2B0C0037045B /* Controllers */,
 				28DDD19D1B1D28EE0037045B /* AppDelegate.h */,
@@ -392,7 +402,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				28C6A2951B26250F00043773 /* LogInViewController.m in Sources */,
+				28FC11B31B2F806500DA3019 /* TextFieldTableViewCell.m in Sources */,
 				28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */,
+				282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */,
 				28C6A2921B223EA500043773 /* TagsTableViewController.m in Sources */,
 				28FC11AA1B2A1A6F00DA3019 /* ProfileHeaderView.m in Sources */,
 				28FC11891B28FAAC00DA3019 /* ProfileTableViewController.m in Sources */,

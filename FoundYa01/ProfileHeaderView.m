@@ -26,7 +26,7 @@
     if (self)
     {
        self.avatarView = [[UIImageView alloc] initWithFrame:self.bounds];
-        self.avatarView.backgroundColor = [UIColor orangeColor];
+        self.avatarView.backgroundColor = [UIColor blueColor];
         [self.contentView addSubview:self.avatarView];
     }
     return self;

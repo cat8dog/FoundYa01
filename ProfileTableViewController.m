@@ -4,7 +4,17 @@
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
 #import "SignUpViewController.h"
 #import "ProfileHeaderView.h"
+#import "TextFieldTableViewCell.h"
+#import "UIViewController+Alert.h"
 
+typedef NS_ENUM(NSUInteger, ProfileSection) {
+    ProfileSectionPhoto = 0,
+    ProfileSectionName,
+    ProfileSectionLocation,
+    ProfileSectionGender,
+    ProfileSectionBirthday,
+    ProfileSectionBio
+};
 @interface ProfileTableViewController ()
 
 @end
@@ -17,36 +27,25 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.saveButton.frame = CGRectMake(0.0, CGRectGetHeight(self.view.bounds) - 50.0f, CGRectGetWidth(self.view.bounds), 50.0f);
     
-    self.saveButton.backgroundColor = [UIColor blackColor];
-    [self.saveButton setTitle:@"save" forState:UIControlStateNormal];
-    [self.view addSubview:self.saveButton];
-    [self.saveButton addTarget:self action:@selector(saveToParse:) forControlEvents:UIControlEventTouchUpInside];
+    // Save button: for saving info to Parse then moving user to MapViewController
+//    self.saveButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    self.saveButton.frame = CGRectMake(0.0, CGRectGetHeight(self.view.bounds) - 50.0f, CGRectGetWidth(self.view.bounds), 50.0f);
+//    self.saveButton.backgroundColor = [UIColor blackColor];
+//    [self.saveButton setTitle:@"save" forState:UIControlStateNormal];
+//    [self.view addSubview:self.saveButton];
+//    [self.saveButton addTarget:self action:@selector(saveToParse:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.rowTitleArray = [[NSMutableArray alloc]initWithArray:@[@"Location",@"Gender",@"Birthday",@"Bio"]];
-    self.rowDataArray = [[NSMutableArray alloc]initWithArray:@[@"",@"",@"",@""]];
-    
-    
-    [self _updateProfileData];
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    
-  // create a method for building tableview for both login styles:
     [self buildTableView];
     
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"photo_url"]]];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            UIImage *image = [UIImage imageWithData:data];
+        dispatch_sync(dispatch_get_main_queue(), ^{UIImage *image = [UIImage imageWithData:data];
             _profileImage = image;
             [self.tableView reloadData];
         });
@@ -54,151 +53,123 @@
     
     [self.view bringSubviewToFront:self.saveButton];
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [self.rowTitleArray count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    return section == 0 ? 0 : 1;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 6;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *identifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];
-        // can't select these cells
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier = [@(indexPath.section) stringValue];
+    TextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    
+    if (cell == nil)
+    {
+        cell = [[TextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-     // Display the data in the table
-//    ****OLD CODE
-//    cell.textLabel.text = self.rowTitleArray[indexPath.row];
-//    cell.detailTextLabel.text = self.rowDataArray[indexPath.row];
-//    
-//    return cell;
     
-//    *****NEW CODE
+    cell.textField.delegate = self;
     
-    if (self.didAriveFromFirstTimeSignUp == YES) {
-        
-    
-        if (indexPath.row == 0){
-            //self.locationField = [[UITextField alloc] initWithFrame:CGRectMake(5, 0, 280, 21)];
-            self.locationField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
-            self.locationField.placeholder = self.rowDataArray[indexPath.row];
-            self.locationField.autocorrectionType = UITextAutocorrectionTypeNo;
-            [self.locationField setClearButtonMode:UITextFieldViewModeWhileEditing];
-            //cell.accessoryView = self.locationField;
-            [cell addSubview:self.locationField];
-        }
-        
-        if (indexPath.row == 1){
-            self.genderField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
-            self.genderField.placeholder = self.rowDataArray[indexPath.row];
-            self.genderField.autocorrectionType = UITextAutocorrectionTypeNo;
-            [self.genderField setClearButtonMode:UITextFieldViewModeWhileEditing];
-            //cell.accessoryView = self.genderField;
-            [cell addSubview:self.genderField];
-        }
-        
-        if (indexPath.row == 2){
-            self.birthdayField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
-            self.birthdayField.placeholder = self.rowDataArray[indexPath.row];
-            self.birthdayField.autocorrectionType = UITextAutocorrectionTypeNo;
-            [self.birthdayField setClearButtonMode:UITextFieldViewModeWhileEditing];
-            //cell.accessoryView = self.birthdayField;
-            [cell addSubview:self.birthdayField];
-        }
-        
-        if (indexPath.row == 3){
-            self.bioField = [[UITextField alloc] initWithFrame:CGRectMake(120, 13, 375, 30)];
-            self.bioField.placeholder = self.rowDataArray[indexPath.row];
-            self.bioField.autocorrectionType = UITextAutocorrectionTypeNo;
-            [self.bioField setClearButtonMode:UITextFieldViewModeWhileEditing];
-            //cell.accessoryView = self.bioField;
-            [cell addSubview:self.bioField];
-        }
-        
-        self.locationField.delegate = self;
-        self.genderField.delegate = self;
-        self.birthdayField.delegate = self;
-        self.bioField.delegate = self;
-        
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    } else {
-        cell.textLabel.text = self.rowTitleArray[indexPath.row];
-        cell.detailTextLabel.text = self.rowDataArray[indexPath.row];
+    switch (indexPath.section)
+    {
+        case ProfileSectionName:
+            cell.textField.text = [PFUser currentUser].username;
+            cell.textField.placeholder = @"Name";
+            break;
+            
+        case ProfileSectionLocation:
+            cell.textField.text = [PFUser currentUser][@"location"];
+            cell.textField.placeholder = @"Location";
+            break;
+            
+        case ProfileSectionGender:
+            cell.textField.text = [PFUser currentUser][@"gender"];
+            cell.textField.placeholder = @"Gender";
+            break;
+            
+        case ProfileSectionBirthday:
+            cell.textField.text = [PFUser currentUser][@"birthday"];
+            cell.textField.placeholder = @"Birthday";
+            break;
+            
+        case ProfileSectionBio:
+            cell.textField.text = [PFUser currentUser][@"bio"];
+            cell.textField.placeholder = @"Bio";
+            break;
+            
+        default:
+            break;
     }
+
     return cell;
 
 }
 
-
-
 // Set received values if they are not nil and reload the table
-- (void)_updateProfileData {
-    NSLog(@"update profile data");
-    
-    
-    NSString *location = [PFUser currentUser][@"location"];
-    if (location) {
-        self.rowDataArray[0] = location;
-    } else {
-        
-        self.rowDataArray[0] = @"Location Unknown";
-    }
-    
-    NSString *gender = [PFUser currentUser][@"gender"];
-    if (gender) {
-        self.rowDataArray[1] = gender;
-    } else {
-        self.rowDataArray[1] = @"Gender Unknown";
-    }
-    
-    NSString *birthday = [PFUser currentUser][@"birthday"];
-    if (birthday) {
-        self.rowDataArray[2] = birthday;
-    } else {
-        self.rowDataArray[2] = @"Birthday Unknown";
-    }
-    
-    NSString *bio = [PFUser currentUser][@"bio"];
-    if (bio) {
-        self.rowDataArray[3] = bio;
-    } else {
-        self.rowDataArray[3] = @"Please tell us about yourself";
-    }
-    
-    NSLog(@"%@",self.rowDataArray);
-    [self.tableView reloadData];
-
-    if ([PFUser currentUser][@"picture"]) {
-        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"picture"]]];
-        [UIImage imageWithData:data];
-    }
-    
-    // set the name in the header view label
-    NSString *name = [PFUser currentUser][@"name"];
-    if (name) {
-//        self.headerNameLabel.text = name;
-    }
-    
-    // set the photo
-    NSString *userProfilePhotoURLString = [PFUser currentUser][@"pictureURL"];
-    if (userProfilePhotoURLString) {
-//        self.headerImageView.image = [UIImage imageWithData:data];
-        
-        // Add a nice corner radius to the image
-//        self.headerImageView.layer.cornerRadius = 8.0f;
-//        self.headerImageView.layer.masksToBounds = YES;
-    } else {
-        NSLog(@"Failed to load profile photo.");
-    }
-    
-}
+//- (void)_updateProfileData {
+//    NSLog(@"update profile data");
+//    
+//    
+//    NSString *location = [PFUser currentUser][@"location"];
+//    if (location) {
+//        self.rowDataArray[0] = location;
+//    } else {
+//        
+//        self.rowDataArray[0] = @"Location Unknown";
+//    }
+//    
+//    NSString *gender = [PFUser currentUser][@"gender"];
+//    if (gender) {
+//        self.rowDataArray[1] = gender;
+//    } else {
+//        self.rowDataArray[1] = @"Gender Unknown";
+//    }
+//    
+//    NSString *birthday = [PFUser currentUser][@"birthday"];
+//    if (birthday) {
+//        self.rowDataArray[2] = birthday;
+//    } else {
+//        self.rowDataArray[2] = @"Birthday Unknown";
+//    }
+//    
+//    NSString *bio = [PFUser currentUser][@"bio"];
+//    if (bio) {
+//        self.rowDataArray[3] = bio;
+//    } else {
+//        self.rowDataArray[3] = @"Please tell us about yourself";
+//    }
+//    
+//    NSLog(@"%@",self.rowDataArray);
+//    [self.tableView reloadData];
+//
+//    if ([PFUser currentUser][@"picture"]) {
+//        NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"picture"]]];
+//        [UIImage imageWithData:data];
+//    }
+//    
+//    // set the name in the header view label
+//    NSString *name = [PFUser currentUser][@"name"];
+//    if (name) {
+////        self.headerNameLabel.text = name;
+//    }
+//    
+//    // set the photo
+//    NSString *userProfilePhotoURLString = [PFUser currentUser][@"pictureURL"];
+//    if (userProfilePhotoURLString) {
+//
+//        
+//    } else {
+//        NSLog(@"Failed to load profile photo.");
+//    }
+//    
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -207,14 +178,62 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    ProfileHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-//    headerView.contentView.backgroundColor = [UIColor
-    headerView.avatarView.image = _profileImage;
-    return headerView;
+    if (section == 0)//profilePicture
+    {
+        ProfileHeaderView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
+        headerView.avatarView.image = _profileImage;
+        return headerView;
+    }else{
+        UITableViewHeaderFooterView *view = [tableView dequeueReusableCellWithIdentifier:@"textHeader"];
+        if (!view)
+        {
+            view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"textHeader"];
+        }
+        switch (section) {
+            case ProfileSectionName:
+            {
+                view.textLabel.text = @"Name";
+            }
+                break;
+            case ProfileSectionLocation:
+            {
+                view.textLabel.text = @"Location";
+            }
+                break;
+            case ProfileSectionGender:
+            {
+                view.textLabel.text = @"Gender";
+            }
+                break;
+            case ProfileSectionBirthday:
+            {
+                view.textLabel.text = @"Birthday";
+            }
+                break;
+            case ProfileSectionBio:
+            {
+                view.textLabel.text = @"Bio";
+            }
+            default:
+                break;
+        }
+        return view;
+    }
+    
+
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
+    switch (section)
+    {
+        case 0:
+            return 350.0f;
+            
+        default:
+            return 50.0f;
+    }
     return 350.0f;
 }
 
@@ -239,36 +258,66 @@
 
 }
 
+- (NSString *)textForTextFieldAtSection:(NSInteger)section
+{
+    TextFieldTableViewCell *cell = (TextFieldTableViewCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+    return cell.textField.text;
+}
+
 -(void)saveToParse:(UIButton *)sender{
     
-    NSString *location = self.locationField.text;
-    NSString *gender = self.genderField.text;
-    NSString *birthday = self.birthdayField.text;
-    NSString *bio = self.bioField.text;
     
-    PFUser *user = [PFUser user];
-    user[@"location"] = location;
-    user[@"gender"]= gender;
-    user[@"birthday"] = birthday;
-    user[@"bio"] = bio;
+    NSLog(@"%@",[self textForTextFieldAtSection: ProfileSectionName]);
+    NSString *location = [self textForTextFieldAtSection:ProfileSectionLocation];
+    NSString *gender = [self textForTextFieldAtSection: ProfileSectionGender];
+    NSString *birthday = [self textForTextFieldAtSection: ProfileSectionBirthday];
+    NSString *bio = [self textForTextFieldAtSection: ProfileSectionBio];
     
-    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    PFUser *user = [PFUser currentUser];
+    
+    NSLog(@"user %@", user);
+    
+    if (location)
+    {
+        user[@"location"] = location;
+    }
+    
+    if (gender)
+    {
+        user[@"gender"]= gender;
+    }
+    
+    if (birthday)
+    {
+        user[@"birthday"] = birthday;
+    }
+    
+    if (bio)
+    {
+        user[@"bio"] = bio;
+    }
+  
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:[error userInfo][@"error"]
-                                                                message:nil
-                                                               delegate:self
-                                                      cancelButtonTitle:nil
-                                                      otherButtonTitles:@"OK", nil];
-            [alertView show];
+            NSLog(@"errooooorrrr!");
+            [self showAlertWithTitle:@"Error" message:error.localizedDescription dismissButtonTitle:@"OK"];
             
-            // Bring the keyboard back up, because they'll probably need to change something.
-            //[self.usernameField becomeFirstResponder];
             return;
         }
         
         // Success!
+        NSLog(@"saved success!");
+//        [self saveButtonPressed:self];
         
-        [self performSegueWithIdentifier:@"getOptions" sender:self];
+//        if (self.didAriveFromFirstTimeSignUp)
+//        {
+            UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController: [storyBoard instantiateViewControllerWithIdentifier:@"MapViewController"]];
+            [self presentViewController:nav animated:YES completion:nil];
+//        }
+//        else{
+//            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//        }
     }];
 }
 

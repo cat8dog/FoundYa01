@@ -149,7 +149,7 @@
                         
                         currentUser[@"bio"] = userInfo[@"bio"];
                         currentUser[@"birthday"] = userInfo[@"birthday"];
-                        currentUser[@"name"] = userInfo[@"name"];
+                        currentUser[@"username"] = userInfo[@"name"];
                         currentUser[@"gender"] = userInfo[@"gender"];
                         currentUser[@"location"] = userInfo[@"location"][@"name"];
                         NSDictionary *photoInfo = userInfo[@"picture"][@"data"];

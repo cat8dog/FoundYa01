@@ -12,6 +12,7 @@
 
 // adjust below to former [self.navigationController popViewControllerAnimated:YES]; once finished.
 
+
 - (IBAction)popLogin:(id)sender
 {
 //    ((LogInViewController *) self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1]).shouldShowMap = NO;
@@ -202,32 +203,8 @@
     
 }
 
-//- (IBAction)pushDiscoverView:(id)sender {
-//    UIViewController *discoverViewController = (UIViewController *)[[UIStoryboard storyboardWithName:@"Main"
-//    bundle:nil] instantiateViewControllerWithIdentifier:@"DiscoverViewController"];
-//    [self.navigationController pushViewController:discoverViewController animated:YES];
-//}
-
-//- (IBAction)unwindToLogin {
-//    [self performSegueWithIdentifier:@"unwindToLogin" sender:self];
-//}
-    
-
-
-
 - (void)didTapOnOverlay:(id)sender {
     self.overlay.hidden = YES;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
