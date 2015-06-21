@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2816D3191B376CF500FB8A7F /* CustomProfileTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D3181B376CF500FB8A7F /* CustomProfileTableVC.m */; };
+		2816D31C1B376D1E00FB8A7F /* SearchTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D31B1B376D1E00FB8A7F /* SearchTableVC.m */; };
+		2816D31F1B376D6A00FB8A7F /* SearchDetailsTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D31E1B376D6A00FB8A7F /* SearchDetailsTableVC.m */; };
 		282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 282D17C01B30C06F00B39227 /* UIViewController+Alert.m */; };
 		28736EC01B1D326400C3E544 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28736EBF1B1D326400C3E544 /* MapViewController.m */; };
 		289D48091B3350E200700A3D /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 289D48081B3350E200700A3D /* Pin.m */; };
@@ -45,6 +48,12 @@
 
 /* Begin PBXFileReference section */
 		207E2C39A4C453A013AF5930 /* Pods-FoundYa01.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoundYa01.release.xcconfig"; path = "Pods/Target Support Files/Pods-FoundYa01/Pods-FoundYa01.release.xcconfig"; sourceTree = "<group>"; };
+		2816D3171B376CF500FB8A7F /* CustomProfileTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomProfileTableVC.h; sourceTree = "<group>"; };
+		2816D3181B376CF500FB8A7F /* CustomProfileTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomProfileTableVC.m; sourceTree = "<group>"; };
+		2816D31A1B376D1E00FB8A7F /* SearchTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchTableVC.h; sourceTree = "<group>"; };
+		2816D31B1B376D1E00FB8A7F /* SearchTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableVC.m; sourceTree = "<group>"; };
+		2816D31D1B376D6A00FB8A7F /* SearchDetailsTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailsTableVC.h; sourceTree = "<group>"; };
+		2816D31E1B376D6A00FB8A7F /* SearchDetailsTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailsTableVC.m; sourceTree = "<group>"; };
 		282D17BF1B30C06F00B39227 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		282D17C01B30C06F00B39227 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		28736EBE1B1D326400C3E544 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
@@ -121,11 +130,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2816D3131B376C2500FB8A7F /* PinDrop */ = {
+			isa = PBXGroup;
+			children = (
+				2816D3171B376CF500FB8A7F /* CustomProfileTableVC.h */,
+				2816D3181B376CF500FB8A7F /* CustomProfileTableVC.m */,
+				2816D31A1B376D1E00FB8A7F /* SearchTableVC.h */,
+				2816D31B1B376D1E00FB8A7F /* SearchTableVC.m */,
+				2816D31D1B376D6A00FB8A7F /* SearchDetailsTableVC.h */,
+				2816D31E1B376D6A00FB8A7F /* SearchDetailsTableVC.m */,
+			);
+			name = PinDrop;
+			sourceTree = "<group>";
+		};
 		28C6A2991B26468D00043773 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				28C0E3971B31FB620057BC8F /* SettingsTableViewController.h */,
-				28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */,
 				28C0E3941B31F8440057BC8F /* PublishedProfileTableViewController.h */,
 				28C0E3951B31F8440057BC8F /* PublishedProfileTableViewController.m */,
 				28CDB0241B22301500182F82 /* DiscoverViewController.h */,
@@ -160,6 +180,8 @@
 				28736EBF1B1D326400C3E544 /* MapViewController.m */,
 				28C6A2901B223EA500043773 /* TagsTableViewController.h */,
 				28C6A2911B223EA500043773 /* TagsTableViewController.m */,
+				28C0E3971B31FB620057BC8F /* SettingsTableViewController.h */,
+				28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -208,6 +230,7 @@
 				282D17C01B30C06F00B39227 /* UIViewController+Alert.m */,
 				28CDAFE81B1FDD2000182F82 /* Model */,
 				28DDD1BF1B1D2B0C0037045B /* Controllers */,
+				2816D3131B376C2500FB8A7F /* PinDrop */,
 				28DDD19D1B1D28EE0037045B /* AppDelegate.h */,
 				28DDD19E1B1D28EE0037045B /* AppDelegate.m */,
 				28DDD1A31B1D28EE0037045B /* Main.storyboard */,
@@ -248,9 +271,9 @@
 		28DDD1BF1B1D2B0C0037045B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				28C6A29B1B2646C900043773 /* Main */,
 				28C6A29A1B2646A100043773 /* Log In */,
 				28C6A2991B26468D00043773 /* Profile */,
+				28C6A29B1B2646C900043773 /* Main */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -408,6 +431,7 @@
 			files = (
 				28C6A2951B26250F00043773 /* LogInViewController.m in Sources */,
 				28FC11B31B2F806500DA3019 /* TextFieldTableViewCell.m in Sources */,
+				2816D3191B376CF500FB8A7F /* CustomProfileTableVC.m in Sources */,
 				28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */,
 				282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */,
 				28C6A2921B223EA500043773 /* TagsTableViewController.m in Sources */,
@@ -415,10 +439,12 @@
 				28FC11891B28FAAC00DA3019 /* ProfileTableViewController.m in Sources */,
 				28CDB0261B22301500182F82 /* DiscoverViewController.m in Sources */,
 				28CDAFD81B1E433700182F82 /* Annotation.m in Sources */,
+				2816D31F1B376D6A00FB8A7F /* SearchDetailsTableVC.m in Sources */,
 				28C0E3961B31F8440057BC8F /* PublishedProfileTableViewController.m in Sources */,
 				28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */,
 				28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */,
 				289D48091B3350E200700A3D /* Pin.m in Sources */,
+				2816D31C1B376D1E00FB8A7F /* SearchTableVC.m in Sources */,
 				28C0E3991B31FB620057BC8F /* SettingsTableViewController.m in Sources */,
 				28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */,
 				28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */,

@@ -10,6 +10,10 @@
 
 @interface CircularButton : UIButton
 
+
+@property (nonatomic, assign) NSInteger miniCircleID;
 - (instancetype)initWithRadius:(CGFloat)radius;
+- (void) didTouchButton;
+
 
 @end

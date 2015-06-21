@@ -17,8 +17,23 @@
     if (self)
     {
         self.layer.cornerRadius = radius;
+        [self addTarget:self action:@selector(didTouchButton) forControlEvents:UIControlEventTouchUpInside];
+        
     }
     return self;
+}
+- (void) didTouchButton {
+    NSLog(@"TOUCH MEEEEEEEE! %i", self.miniCircleID);
+    switch (self.miniCircleID) {
+        case 0:
+            NSLog(@"Leave a note!");
+            break;
+        case 1:
+            NSLog(@"Find that guuuurl");
+            break;
+        default:
+            break;
+    }
 }
 
 @end

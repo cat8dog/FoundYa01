@@ -66,6 +66,7 @@
         CircularButton *button = [[CircularButton alloc] initWithRadius:radius];
 //        [button addTarget:self action:@selector(saveClick:) forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = [UIColor whiteColor];
+        button.miniCircleID = i;
         [array addObject:button];
         [container addSubview:button];
         [container bringSubviewToFront:button];
