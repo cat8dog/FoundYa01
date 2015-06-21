@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 282D17C01B30C06F00B39227 /* UIViewController+Alert.m */; };
 		28736EC01B1D326400C3E544 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28736EBF1B1D326400C3E544 /* MapViewController.m */; };
+		289D48091B3350E200700A3D /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 289D48081B3350E200700A3D /* Pin.m */; };
+		28C0E3961B31F8440057BC8F /* PublishedProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C0E3951B31F8440057BC8F /* PublishedProfileTableViewController.m */; };
+		28C0E3991B31FB620057BC8F /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */; };
 		28C6A2921B223EA500043773 /* TagsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6A2911B223EA500043773 /* TagsTableViewController.m */; };
 		28C6A2951B26250F00043773 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6A2941B26250F00043773 /* LogInViewController.m */; };
 		28C6A2981B26291B00043773 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C6A2971B26291B00043773 /* SignUpViewController.m */; };
@@ -17,8 +20,6 @@
 		28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE01B1F9DB700182F82 /* CircleView.m */; };
 		28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE31B1FA01600182F82 /* CircularButton.m */; };
 		28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE61B1FCF3700182F82 /* FindViewController.m */; };
-		28CDAFEB1B1FDD5000182F82 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFEA1B1FDD5000182F82 /* SettingsViewController.m */; };
-		28CDB0231B222F2600182F82 /* CustomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDB0221B222F2600182F82 /* CustomViewController.m */; };
 		28CDB0261B22301500182F82 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDB0251B22301500182F82 /* DiscoverViewController.m */; };
 		28DDD19C1B1D28EE0037045B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19B1B1D28EE0037045B /* main.m */; };
 		28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19E1B1D28EE0037045B /* AppDelegate.m */; };
@@ -48,6 +49,12 @@
 		282D17C01B30C06F00B39227 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		28736EBE1B1D326400C3E544 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28736EBF1B1D326400C3E544 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		289D48071B3350E200700A3D /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
+		289D48081B3350E200700A3D /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pin.m; sourceTree = "<group>"; };
+		28C0E3941B31F8440057BC8F /* PublishedProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublishedProfileTableViewController.h; sourceTree = "<group>"; };
+		28C0E3951B31F8440057BC8F /* PublishedProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublishedProfileTableViewController.m; sourceTree = "<group>"; };
+		28C0E3971B31FB620057BC8F /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		28C6A2901B223EA500043773 /* TagsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagsTableViewController.h; sourceTree = "<group>"; };
 		28C6A2911B223EA500043773 /* TagsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagsTableViewController.m; sourceTree = "<group>"; };
 		28C6A2931B26250F00043773 /* LogInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
@@ -64,10 +71,6 @@
 		28CDAFE31B1FA01600182F82 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
 		28CDAFE51B1FCF3700182F82 /* FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
 		28CDAFE61B1FCF3700182F82 /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
-		28CDAFE91B1FDD5000182F82 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
-		28CDAFEA1B1FDD5000182F82 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		28CDB0211B222F2600182F82 /* CustomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomViewController.h; sourceTree = "<group>"; };
-		28CDB0221B222F2600182F82 /* CustomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomViewController.m; sourceTree = "<group>"; };
 		28CDB0241B22301500182F82 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		28CDB0251B22301500182F82 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		28DDD1961B1D28EE0037045B /* FoundYa01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundYa01.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,10 +124,10 @@
 		28C6A2991B26468D00043773 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				28CDAFE91B1FDD5000182F82 /* SettingsViewController.h */,
-				28CDAFEA1B1FDD5000182F82 /* SettingsViewController.m */,
-				28CDB0211B222F2600182F82 /* CustomViewController.h */,
-				28CDB0221B222F2600182F82 /* CustomViewController.m */,
+				28C0E3971B31FB620057BC8F /* SettingsTableViewController.h */,
+				28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */,
+				28C0E3941B31F8440057BC8F /* PublishedProfileTableViewController.h */,
+				28C0E3951B31F8440057BC8F /* PublishedProfileTableViewController.m */,
 				28CDB0241B22301500182F82 /* DiscoverViewController.h */,
 				28CDB0251B22301500182F82 /* DiscoverViewController.m */,
 			);
@@ -172,6 +175,8 @@
 				28CDAFDA1B1E6EEF00182F82 /* Overlay.m */,
 				28CDAFDF1B1F9DB700182F82 /* CircleView.h */,
 				28CDAFE01B1F9DB700182F82 /* CircleView.m */,
+				289D48071B3350E200700A3D /* Pin.h */,
+				289D48081B3350E200700A3D /* Pin.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -410,13 +415,14 @@
 				28FC11891B28FAAC00DA3019 /* ProfileTableViewController.m in Sources */,
 				28CDB0261B22301500182F82 /* DiscoverViewController.m in Sources */,
 				28CDAFD81B1E433700182F82 /* Annotation.m in Sources */,
-				28CDB0231B222F2600182F82 /* CustomViewController.m in Sources */,
+				28C0E3961B31F8440057BC8F /* PublishedProfileTableViewController.m in Sources */,
 				28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */,
 				28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */,
+				289D48091B3350E200700A3D /* Pin.m in Sources */,
+				28C0E3991B31FB620057BC8F /* SettingsTableViewController.m in Sources */,
 				28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */,
 				28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */,
 				28C6A2981B26291B00043773 /* SignUpViewController.m in Sources */,
-				28CDAFEB1B1FDD5000182F82 /* SettingsViewController.m in Sources */,
 				28DDD19C1B1D28EE0037045B /* main.m in Sources */,
 				28736EC01B1D326400C3E544 /* MapViewController.m in Sources */,
 			);

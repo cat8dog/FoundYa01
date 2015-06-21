@@ -9,10 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "CircularButton.h"
 
+@class CircleView;
+@protocol CircleViewDelegate <NSObject>
+
+- (void)didTapSavingButtonOnCircleView:(CircleView *)circleView;
+
+@end
+
 @interface CircleView : UIView
 
 @property (nonatomic, strong) CircularButton *savingButton;
 
 - (instancetype)initWithRadius:(CGFloat)radius;
+@property (nonatomic, weak) id<CircleViewDelegate> delegate;
 
 @end

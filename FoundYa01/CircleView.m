@@ -27,8 +27,12 @@
         self.layer.borderColor = [UIColor whiteColor].CGColor;
         
         self.savingButton = [[CircularButton alloc] initWithRadius:radius * 0.5];
-        self.savingButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+//        self.savingButton.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.5];
+        self.savingButton.backgroundColor = [UIColor orangeColor];
+        
+        
         [self.savingButton setTitle:@"save" forState:UIControlStateNormal];
+        [self.savingButton addTarget:self action:@selector(saveClick:) forControlEvents:UIControlEventTouchUpInside];
         
         [self addSubview:self.savingButton];
         _radius = radius;
@@ -37,6 +41,7 @@
         _buttons = [self produceButtons:8 radius:15.0f onView:_container];
         [self addSubview:_container];
         [self bringSubviewToFront:_container];
+        [self bringSubviewToFront:self.savingButton];
     }
     return self;
 }
@@ -49,6 +54,7 @@
     _container.frame = boudingBox;
     [self bringSubviewToFront:_container];
     [self drawButtons:_buttons forCircleWithBoundingBox:boudingBox];
+    [self bringSubviewToFront:self.savingButton];
 }
 
 //Produce a list of buttons on the container
@@ -58,6 +64,7 @@
     for (int i = 0; i < number; i++)
     {
         CircularButton *button = [[CircularButton alloc] initWithRadius:radius];
+//        [button addTarget:self action:@selector(saveClick:) forControlEvents:UIControlEventTouchUpInside];
         button.backgroundColor = [UIColor whiteColor];
         [array addObject:button];
         [container addSubview:button];
@@ -84,5 +91,18 @@
         currentPoint.y = startingPoint.y + (radius * (1.0f - cosf(alpha)));
     }
 }
+
+- (void) saveClick:(UIButton *)sender{
+//    switch (sender.tag) {
+//        case 0:
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    [self.delegate didTapSavingButtonOnCircleView:self];
+}
+
+
 
 @end

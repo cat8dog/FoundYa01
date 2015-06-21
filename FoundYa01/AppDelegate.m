@@ -3,6 +3,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import <ParseFacebookUtilsV4/PFFacebookUtils.h>
+#import "Pin.h"
 @interface AppDelegate ()
 
 @end
@@ -10,7 +11,9 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {[Parse setApplicationId:@"NPNgyV4EoyrDmvl7fTRgYxn4Kh9XOkBeMTYKwyfw" clientKey:@"QW2wazJRsIEg388a062frvEvyokUjB0xXrBD4La8"];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [Pin registerSubclass];
+    [Parse setApplicationId:@"NPNgyV4EoyrDmvl7fTRgYxn4Kh9XOkBeMTYKwyfw" clientKey:@"QW2wazJRsIEg388a062frvEvyokUjB0xXrBD4La8"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     [FBSDKLoginButton class];

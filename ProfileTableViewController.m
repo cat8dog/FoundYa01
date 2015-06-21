@@ -109,6 +109,7 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
     }
 
     return cell;
+    
 
 }
 

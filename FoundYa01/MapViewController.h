@@ -24,7 +24,15 @@
 @property (strong, nonatomic) UIButton *findButton;
 @property (strong, nonatomic) UIButton *tagsButton;
 @property (strong, nonatomic) Overlay *overlay;
+@property (strong, nonatomic) NSCalendar *MyTargetDateObject;
+
+
+@property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+
 -(void) getOptions;
 -(void) unwindToLogin;
+
+
 
 @end

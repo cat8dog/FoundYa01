@@ -1,21 +1,23 @@
 
 #import "MapViewController.h"
 #import "LogInViewController.h"
+#import "Pin.h"
+#import <Parse/Parse.h>
 #define METERS_PER_MILE 1609.344
 
 
-@interface MapViewController ()
+@interface MapViewController () <CircleViewDelegate, MKAnnotation>
 
 @end
 
 @implementation MapViewController
+{
+    Pin *_pin;
+}
 
 // adjust below to former [self.navigationController popViewControllerAnimated:YES]; once finished.
-
-
 - (IBAction)popLogin:(id)sender
 {
-//    ((LogInViewController *) self.navigationController.viewControllers[[self.navigationController.viewControllers indexOfObject:self] - 1]).shouldShowMap = NO;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -40,11 +42,11 @@
     self.overlay = [[Overlay alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.overlay];
     self.overlay.hidden = YES;
+    self.overlay.circleView.delegate = self;
+    
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapOnOverlay:)];
     [self.overlay addGestureRecognizer:tapGesture];
-    //_mapView = [[MKMapView alloc]initWithFrame:self.view.frame];
-    //[self.view addSubview:_mapView];
-    //self.mapView.delegate = self;
+
     self.locationManager = [[CLLocationManager alloc] init];
     
     UILongPressGestureRecognizer *longGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
@@ -71,9 +73,6 @@
     [findButton addTarget:self action:@selector(getOptions:) forControlEvents:UIControlEventTouchUpInside];
     
     // temporary "back" button
-    
-    
-    
     UIButton *tagsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     tagsButton.frame = CGRectMake(150, 600, 100, 60);
     tagsButton.backgroundColor = [UIColor blackColor];
@@ -82,36 +81,58 @@
     [tagsButton addTarget:self action:@selector(viewTags:) forControlEvents:UIControlEventTouchUpInside];
     
     // Do any additional setup after loading the view.
-    
-
 }
+
+
+
+
 
 - (void)didLongPress:(UILongPressGestureRecognizer *)sender
 {
     switch (sender.state) {
         case UIGestureRecognizerStateBegan:
+//        {
+//            NSDate *now = [NSDate date];
+//            NSDateComponents *dc = [[NSDateComponents alloc] init];
+//            [dc setMonth:3];
+//            [dc setDay:4];
+//           
+//            _MyTargetDateObject = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:now options:0];
+            
         {
+        
             CGPoint location = [sender locationInView:_mapView];
             CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
             
-            Annotation *annotation = [[Annotation alloc] initWithLocation:coordinate];
-            
-            [_mapView addAnnotation:annotation];
-       
-//            MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(coordinate, 0.01*METERS_PER_MILE, 0.01*METERS_PER_MILE);
-//
-            // 3
-//            [_mapView setRegion:viewRegion animated:YES];
             [_mapView setCenterCoordinate:coordinate animated:YES];
             self.overlay.hidden = NO;
+//            
+//            Pin *pin = [Pin pinWithCoordinate:coordinate];
+//            
+//            // supply date!
+//            pin.author = [PFUser currentUser];
+//            pin.pinDropDate = [NSDate date];
+//            [_mapView addAnnotation:pin];
+//            _pin = pin;
         }
-            
             break;
             
         default:
             break;
     }
 
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    PFQuery *query = [PFQuery queryWithClassName:@"Pins"];
+    NSDate *now = [NSDate date];
+    [query whereKey:@"pinDropDate" lessThan:now];
+    __weak typeof(self) weakSelf = self;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+//        [weakSelf.mapView addAnnotations:[Pin pinsWithObjects:objects]];
+    }];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -124,52 +145,11 @@
     {
         view=[[MKAnnotationView alloc]initWithAnnotation:annotation reuseIdentifier:reuseID];
         view.image = [UIImage imageNamed:@"poop_smiley1"];
-        
-//        //UIImageView* image = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 46, 46)];
-//        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper_towl"]];
-//        view.leftCalloutAccessoryView = imageView;
-//        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//        view.canShowCallout=YES;
-//        //view.animatesDrop = YES;
-//        view.enabled = YES;
     }
-    
-//    view.annotation=annotation;
-    
     
     return view;
     
 }
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // Location points downtown Toronto
-    CLLocationCoordinate2D zoomLocation;
-    zoomLocation.latitude = 43.642566;
-    zoomLocation.longitude= -79.387057;
-    Annotation *annotation = [[Annotation alloc] initWithLocation:zoomLocation];
-    [_mapView addAnnotation: annotation];
-    
-    // Zoom function: region made around user location centre point with a given width / height
-  }
-
-// AlertView (Callout for pin Preview)
-//- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-//{
-//    // annotation
-//    Annotation *annotation = (Annotation *)view.annotation;
-//    //deselect
-//    [self.mapView deselectAnnotation:annotation animated:YES];
-//    
-//    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"paper_towl"]];
-//    view.leftCalloutAccessoryView = imageView;
-//    view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//    view.canShowCallout=YES;
-//    //view.animatesDrop = YES;
-//    view.enabled = YES;
-//}
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
@@ -190,12 +170,14 @@
     
 }
 
--(void)getOptions:(UIButton *)sender {
-    
-    [self performSegueWithIdentifier:@"getOptions" sender:self];
-    
+// ******* New method for saving location to parse
 
-}
+//-(void)getOptions:(UIButton *)sender {
+//    
+//    [self performSegueWithIdentifier:@"getOptions" sender:self];
+//    
+
+//}
 
 -(void)viewTags:(UIButton *)sender {
     
@@ -204,6 +186,18 @@
 }
 
 - (void)didTapOnOverlay:(id)sender {
+    self.overlay.hidden = YES;
+}
+
+- (void)didTapSavingButtonOnCircleView:(CircleView *)circleView {
+    
+    
+    NSLog(@"hit");
+    
+    if (_pin)
+    {
+        [_pin saveInBackground];
+    }
     self.overlay.hidden = YES;
 }
 
