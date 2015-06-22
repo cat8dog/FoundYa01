@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoteViewController.h"
 
 @interface CircularButton : UIButton
 
 
 @property (nonatomic, assign) NSInteger miniCircleID;
 - (instancetype)initWithRadius:(CGFloat)radius;
-- (void) didTouchButton;
-
 
 @end

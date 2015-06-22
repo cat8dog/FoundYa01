@@ -14,9 +14,21 @@
 //static NSString *const kFYPinDropDateKey = @"pinDropDate";
 
 @implementation Pin
-@dynamic coordinate;
+//@dynamic location;
 @dynamic pinDropDate;
 @dynamic author;
+@dynamic location;
+@dynamic message;
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return CLLocationCoordinate2DMake(self.location.latitude, self.location.longitude);
+}
+
+- (void)setCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    self.location = [PFGeoPoint geoPointWithLatitude:coordinate.latitude longitude:coordinate.longitude];
+}
 
 //{
 //    PFUser *_author;

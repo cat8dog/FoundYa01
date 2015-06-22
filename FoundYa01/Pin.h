@@ -14,6 +14,9 @@
 @property (nonatomic, strong) PFUser *author;
 @property (nonatomic, assign) CLLocationCoordinate2D coordinate;
 @property (nonatomic, strong) NSDate *pinDropDate;
+@property (nonatomic, strong) PFGeoPoint *location;
+@property (nonatomic, copy) NSString *message;
+
 //
 ////@property (nonatomic, readonly, copy) NSString *title;
 ////@property (nonatomic, readonly, copy) NSString *subtitle;

@@ -29,7 +29,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="noS-eR-ykC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2716" y="17"/>
+            <point key="canvasLocation" x="2726" y="203"/>
         </scene>
         <!--Profile Table View Controller-->
         <scene sceneID="T9k-3h-tt0">
@@ -201,6 +201,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROR-7F-iq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1342" y="-545"/>
+        </scene>
+        <!--Note View Controller-->
+        <scene sceneID="zd4-t5-CsQ">
+            <objects>
+                <viewController storyboardIdentifier="NoteViewController" id="nJO-Ia-9i9" customClass="NoteViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XIu-2i-cGq"/>
+                        <viewControllerLayoutGuide type="bottom" id="xgY-NN-9uS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uYe-Ka-2WK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrk-Cf-QsY">
+                                <rect key="frame" x="6" y="-8" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="NoteField" destination="hrk-Cf-QsY" id="Xc2-vB-IF1"/>
+                        <outlet property="noteTextView" destination="hrk-Cf-QsY" id="02I-Ei-9cd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qgp-vF-VAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1795" y="-550"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="7IT-bP-ESM">
+            <objects>
+                <viewController id="hs2-RO-ODh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x5g-7P-hCf"/>
+                        <viewControllerLayoutGuide type="bottom" id="jT6-og-9HY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IXS-gT-KfQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o5o-kR-pfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2230" y="-549"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="1Qt-5Z-UgS">
@@ -413,7 +462,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sGE-xf-c6S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1808" y="17"/>
+            <point key="canvasLocation" x="1800" y="203"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="7Tb-MW-bUK">
@@ -440,7 +489,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mEL-Xw-kZQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2264" y="17"/>
+            <point key="canvasLocation" x="2272" y="203"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hhw-2P-dxJ">

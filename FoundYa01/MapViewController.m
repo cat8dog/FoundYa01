@@ -6,7 +6,7 @@
 #define METERS_PER_MILE 1609.344
 
 
-@interface MapViewController () <CircleViewDelegate, MKAnnotation>
+@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate>
 
 @end
 
@@ -100,20 +100,16 @@
 //            _MyTargetDateObject = [[NSCalendar currentCalendar] dateByAddingComponents:dc toDate:now options:0];
             
         {
-        
             CGPoint location = [sender locationInView:_mapView];
             CLLocationCoordinate2D coordinate = [_mapView convertPoint:location toCoordinateFromView:_mapView];
             
             [_mapView setCenterCoordinate:coordinate animated:YES];
             self.overlay.hidden = NO;
-//            
-//            Pin *pin = [Pin pinWithCoordinate:coordinate];
-//            
-//            // supply date!
-//            pin.author = [PFUser currentUser];
-//            pin.pinDropDate = [NSDate date];
-//            [_mapView addAnnotation:pin];
-//            _pin = pin;
+            Pin *pin = [Pin object];
+            pin.author = [PFUser currentUser];
+            pin.pinDropDate = [NSDate date];
+            pin.coordinate = coordinate;
+            _pin = pin;
         }
             break;
             
@@ -126,12 +122,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    PFQuery *query = [PFQuery queryWithClassName:@"Pins"];
+    
+    PFQuery *query = [Pin query];
     NSDate *now = [NSDate date];
     [query whereKey:@"pinDropDate" lessThan:now];
     __weak typeof(self) weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-//        [weakSelf.mapView addAnnotations:[Pin pinsWithObjects:objects]];
+        [weakSelf.mapView addAnnotations:objects];
     }];
 }
 
@@ -189,13 +186,41 @@
     self.overlay.hidden = YES;
 }
 
-- (void)didTapSavingButtonOnCircleView:(CircleView *)circleView {
-    
-    
-    NSLog(@"hit");
-    
+- (void)didTapButton:(UIButton *)button
+{
+    PinOption option = button.tag;
+    switch (option)
+    {
+        case PinOptionNote:
+        {
+            UIStoryboard *storyb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            NoteViewController *noteViewController = [storyb instantiateViewControllerWithIdentifier:@"NoteViewController"];
+            noteViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+            noteViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            noteViewController.preferredContentSize = CGSizeMake(325, 75); // size of popup view
+            noteViewController.delegate = self;
+            [self.navigationController pushViewController:noteViewController animated:YES];
+            break;
+        }
+            
+        default:
+            break;
+    }
+}
+
+- (void)didSaveNote:(NSString *)note onViewController:(NoteViewController *)noteVC
+{
+    self.overlay.circleView.note = note;
+}
+
+- (void)didTapSavingButtonOnCircleView:(CircleView *)circleView
+{
     if (_pin)
     {
+        if (circleView.note)
+        {
+           _pin.message = circleView.note;
+        }
         [_pin saveInBackground];
     }
     self.overlay.hidden = YES;

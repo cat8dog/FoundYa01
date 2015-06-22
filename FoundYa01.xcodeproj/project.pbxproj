@@ -10,7 +10,9 @@
 		2816D3191B376CF500FB8A7F /* CustomProfileTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D3181B376CF500FB8A7F /* CustomProfileTableVC.m */; };
 		2816D31C1B376D1E00FB8A7F /* SearchTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D31B1B376D1E00FB8A7F /* SearchTableVC.m */; };
 		2816D31F1B376D6A00FB8A7F /* SearchDetailsTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D31E1B376D6A00FB8A7F /* SearchDetailsTableVC.m */; };
+		2816D3221B38802C00FB8A7F /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D3211B38802C00FB8A7F /* NoteViewController.m */; };
 		282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 282D17C01B30C06F00B39227 /* UIViewController+Alert.m */; };
+		284CC1F41B389ADB004F325A /* KeyWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284CC1F31B389ADB004F325A /* KeyWordsViewController.m */; };
 		28736EC01B1D326400C3E544 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28736EBF1B1D326400C3E544 /* MapViewController.m */; };
 		289D48091B3350E200700A3D /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 289D48081B3350E200700A3D /* Pin.m */; };
 		28C0E3961B31F8440057BC8F /* PublishedProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C0E3951B31F8440057BC8F /* PublishedProfileTableViewController.m */; };
@@ -54,8 +56,12 @@
 		2816D31B1B376D1E00FB8A7F /* SearchTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchTableVC.m; sourceTree = "<group>"; };
 		2816D31D1B376D6A00FB8A7F /* SearchDetailsTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailsTableVC.h; sourceTree = "<group>"; };
 		2816D31E1B376D6A00FB8A7F /* SearchDetailsTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailsTableVC.m; sourceTree = "<group>"; };
+		2816D3201B38802C00FB8A7F /* NoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoteViewController.h; sourceTree = "<group>"; };
+		2816D3211B38802C00FB8A7F /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
 		282D17BF1B30C06F00B39227 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		282D17C01B30C06F00B39227 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
+		284CC1F21B389ADB004F325A /* KeyWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyWordsViewController.h; sourceTree = "<group>"; };
+		284CC1F31B389ADB004F325A /* KeyWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyWordsViewController.m; sourceTree = "<group>"; };
 		28736EBE1B1D326400C3E544 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		28736EBF1B1D326400C3E544 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		289D48071B3350E200700A3D /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
@@ -139,6 +145,10 @@
 				2816D31B1B376D1E00FB8A7F /* SearchTableVC.m */,
 				2816D31D1B376D6A00FB8A7F /* SearchDetailsTableVC.h */,
 				2816D31E1B376D6A00FB8A7F /* SearchDetailsTableVC.m */,
+				2816D3201B38802C00FB8A7F /* NoteViewController.h */,
+				2816D3211B38802C00FB8A7F /* NoteViewController.m */,
+				284CC1F21B389ADB004F325A /* KeyWordsViewController.h */,
+				284CC1F31B389ADB004F325A /* KeyWordsViewController.m */,
 			);
 			name = PinDrop;
 			sourceTree = "<group>";
@@ -431,8 +441,10 @@
 			files = (
 				28C6A2951B26250F00043773 /* LogInViewController.m in Sources */,
 				28FC11B31B2F806500DA3019 /* TextFieldTableViewCell.m in Sources */,
+				284CC1F41B389ADB004F325A /* KeyWordsViewController.m in Sources */,
 				2816D3191B376CF500FB8A7F /* CustomProfileTableVC.m in Sources */,
 				28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */,
+				2816D3221B38802C00FB8A7F /* NoteViewController.m in Sources */,
 				282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */,
 				28C6A2921B223EA500043773 /* TagsTableViewController.m in Sources */,
 				28FC11AA1B2A1A6F00DA3019 /* ProfileHeaderView.m in Sources */,
