@@ -6,7 +6,7 @@
 #define METERS_PER_MILE 1609.344
 
 
-@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate>
+@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate, KeyWordsViewControllerDelegate>
 
 @end
 
@@ -193,17 +193,33 @@
     {
         case PinOptionNote:
         {
-            UIStoryboard *storyb = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-            NoteViewController *noteViewController = [storyb instantiateViewControllerWithIdentifier:@"NoteViewController"];
+            UIStoryboard *storyMain = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            NoteViewController *noteViewController = [storyMain instantiateViewControllerWithIdentifier:@"NoteViewController"];
             noteViewController.modalPresentationStyle = UIModalPresentationFormSheet;
             noteViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
             noteViewController.preferredContentSize = CGSizeMake(325, 75); // size of popup view
             noteViewController.delegate = self;
             [self.navigationController pushViewController:noteViewController animated:YES];
-            break;
         }
+            break;
+        
+        case PinOptionKeyWords:
+        {
+            UIStoryboard *storyMain = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            KeyWordsViewController *keyWordsViewController = [storyMain instantiateViewControllerWithIdentifier:@"KeyWordsViewController"];
+            keyWordsViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+            keyWordsViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            keyWordsViewController.preferredContentSize = CGSizeMake(325, 75); // size of popup view
+            keyWordsViewController.delegate = self;
+            [self.navigationController pushViewController:keyWordsViewController animated:YES];
             
-        default:
+            
+        }
+            break;
+            
+        default: {
+            // do nothing
+        }
             break;
     }
 }
@@ -211,6 +227,10 @@
 - (void)didSaveNote:(NSString *)note onViewController:(NoteViewController *)noteVC
 {
     self.overlay.circleView.note = note;
+}
+
+- (void)didSaveKeyWords:(NSString *)keywords onViewController:(KeyWordsViewController *)keywordsVC {
+    self.overlay.circleView.keywords = keywords;
 }
 
 - (void)didTapSavingButtonOnCircleView:(CircleView *)circleView
@@ -222,7 +242,14 @@
            _pin.message = circleView.note;
         }
         [_pin saveInBackground];
+        
+        if (circleView.keywords)
+            {
+                _pin.wordmatch = circleView.keywords;
+            }
+            [_pin saveInBackground];
     }
+    
     self.overlay.hidden = YES;
 }
 

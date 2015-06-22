@@ -233,10 +233,10 @@
             </objects>
             <point key="canvasLocation" x="1795" y="-550"/>
         </scene>
-        <!--View Controller-->
+        <!--Key Words View Controller-->
         <scene sceneID="7IT-bP-ESM">
             <objects>
-                <viewController id="hs2-RO-ODh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="KeyWordsViewController" id="hs2-RO-ODh" customClass="KeyWordsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="x5g-7P-hCf"/>
                         <viewControllerLayoutGuide type="bottom" id="jT6-og-9HY"/>
@@ -244,8 +244,18 @@
                     <view key="view" contentMode="scaleToFill" id="IXS-gT-KfQ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nPN-Kp-A3j">
+                                <rect key="frame" x="40" y="123" width="240" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="keyEntry1" destination="nPN-Kp-A3j" id="LlN-ER-bGH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o5o-kR-pfR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

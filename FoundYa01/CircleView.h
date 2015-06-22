@@ -31,6 +31,13 @@ typedef NS_ENUM(NSUInteger, PinOption) {
 @interface CircleView : UIView
 
 @property (nonatomic, strong) NSString *note;
+@property (nonatomic, strong) NSString *keywords;
+@property (nonatomic, strong) NSString *search;
+@property (nonatomic, strong) NSString *security;
+@property (nonatomic, strong) NSString *photo;
+@property (nonatomic, strong) NSString *socialMedia;
+@property (nonatomic, strong) NSString *customProfile;
+
 @property (nonatomic, strong) CircularButton *savingButton;
 @property (nonatomic, weak) id<CircleViewDelegate> delegate;
 

@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSDate *pinDropDate;
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy) NSString *wordmatch;
 
 //
 ////@property (nonatomic, readonly, copy) NSString *title;

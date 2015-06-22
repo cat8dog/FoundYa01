@@ -1,10 +1,3 @@
-//
-//  KeyWordsViewController.m
-//  FoundYa01
-//
-//  Created by Catherine Reyto on 2015-06-22.
-//  Copyright (c) 2015 Catherine Reyto. All rights reserved.
-//
 
 #import "KeyWordsViewController.h"
 
@@ -16,7 +9,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    // Creating navigation path for Done button to take user back to Circle button on map
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didTapDoneButton:)];
+}
+
+- (void)didTapDoneButton:(id)sender
+{
+    
+    if (self.keyEntry1.text.length > 0)
+    {
+        [self.delegate didSaveKeyWords:self.keyEntry1.text onViewController:self];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

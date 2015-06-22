@@ -93,9 +93,15 @@
     }
 }
 
+// functionality for each of the small circle buttons
 - (void)saveClick:(UIButton *)sender{
     switch (sender.tag) {
         case PinOptionNote:
+        {
+            [self.delegate didTapButton:sender];
+            break;
+        }
+        case PinOptionKeyWords:
         {
             [self.delegate didTapButton:sender];
             break;
