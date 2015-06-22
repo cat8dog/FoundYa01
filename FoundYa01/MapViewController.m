@@ -6,7 +6,7 @@
 #define METERS_PER_MILE 1609.344
 
 
-@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate, KeyWordsViewControllerDelegate>
+@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate, KeyWordsViewControllerDelegate,SearchViewControllerDelegate>
 
 @end
 
@@ -213,9 +213,21 @@
             keyWordsViewController.delegate = self;
             [self.navigationController pushViewController:keyWordsViewController animated:YES];
             
-            
         }
             break;
+         
+        case PinOptionSearch:
+        {
+            UIStoryboard *storyMain = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            SearchViewController *searchViewController = [storyMain instantiateViewControllerWithIdentifier:@"SearchViewController"];
+            searchViewController.modalPresentationStyle = UIModalPresentationFormSheet;
+            searchViewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+            searchViewController.preferredContentSize = CGSizeMake(325, 75); // size of popup view
+            searchViewController.delegate = self;
+            [self.navigationController pushViewController:searchViewController animated:YES];
+        }
+            break;
+        
             
         default: {
             // do nothing
@@ -233,6 +245,10 @@
     self.overlay.circleView.keywords = keywords;
 }
 
+- (void)didSaveSearch:(NSString *)searchItems onViewController:(SearchViewController *)searchVC {
+    self.overlay.circleView.searchItems = searchItems;
+}
+
 - (void)didTapSavingButtonOnCircleView:(CircleView *)circleView
 {
     if (_pin)
@@ -248,6 +264,10 @@
                 _pin.wordmatch = circleView.keywords;
             }
             [_pin saveInBackground];
+        if (circleView.searchItems)
+                {
+                    [_pin saveInBackground];
+                }
     }
     
     self.overlay.hidden = YES;

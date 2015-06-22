@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NoteViewController.h"
 #import "KeyWordsViewController.h"
+#import "SearchViewController.h"
 
 @interface CircularButton : UIButton
 

@@ -99,13 +99,18 @@
         case PinOptionNote:
         {
             [self.delegate didTapButton:sender];
-            break;
         }
+              break;
         case PinOptionKeyWords:
         {
             [self.delegate didTapButton:sender];
-            break;
         }
+              break;
+        case PinOptionSearch:
+        {
+            [self.delegate didTapButton:sender];
+        }
+            break;
         case PinOptionSave:
         {
             [self.delegate didTapSavingButtonOnCircleView:self];
