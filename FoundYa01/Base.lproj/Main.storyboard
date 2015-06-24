@@ -485,7 +485,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-1K-LX2">
+                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-1K-LX2">
                                 <rect key="frame" x="0.0" y="185" width="320" height="162"/>
                                 <connections>
                                     <outlet property="dataSource" destination="RmR-9N-aSR" id="KZn-gr-Rr5"/>
@@ -519,15 +519,21 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wqd-94-b0T">
+                            <pickerView tag="2" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wqd-94-b0T">
                                 <rect key="frame" x="0.0" y="375" width="320" height="162"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="RmR-9N-aSR" id="hSV-Kn-OfC"/>
+                                    <outlet property="delegate" destination="RmR-9N-aSR" id="CHa-x8-ync"/>
+                                </connections>
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="ethnicityType" destination="wqd-94-b0T" id="hoK-dp-2Ym"/>
                         <outlet property="hairColour" destination="8oG-1K-LX2" id="pSU-ZN-LLL"/>
                         <outlet property="label" destination="O8k-eM-X6J" id="sv2-vA-LR8"/>
+                        <outlet property="labelEthnicity" destination="rca-WG-VAl" id="g53-0w-DL7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i3K-qf-Duz" userLabel="First Responder" sceneMemberID="firstResponder"/>
