@@ -11,9 +11,17 @@
 @end
 
 @interface SearchViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *gender;
-
 @property (weak, nonatomic) id <SearchViewControllerDelegate> delegate;
+
+- (IBAction)buttonPressed:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UITextField *gender;
+@property (weak, nonatomic) IBOutlet UILabel *labelMale;
+@property (weak, nonatomic) IBOutlet UILabel *labelFemale;
+
+//@property (weak, nonatomic) IBOutlet UISwitch *genderSwitch;
+- (IBAction)genderSwitch:(UISwitch *)sender;
+
 
 
 @property (weak, nonatomic) IBOutlet UIPickerView *hairColour;

@@ -116,7 +116,7 @@
             self.overlay.hidden = NO;
             Pin *pin = [Pin object];
             pin.author = [PFUser currentUser];
-//            pin.searchOptionsID = [PFRelation searchItems];
+//            pin.searchOptionsID = [PFRelation searchOpts];
             pin.pinDropDate = [NSDate date];
             pin.coordinate = coordinate;
             _pin = pin;
@@ -255,13 +255,14 @@
     self.overlay.circleView.keywords = keywords;
 }
 
-- (void)didSaveSearch:(NSMutableDictionary *)searchItems onViewController:(SearchViewController *)searchVC {
-    self.overlay.circleView.searchItems = searchItems;
+- (void)didSaveSearch:(NSMutableArray *)searchOpts onViewController:(SearchViewController *)searchVC {
+    self.overlay.circleView.searchOpts = searchOpts;
 }
 
 - (void)didTapSavingButtonOnCircleView:(CircleView *)circleView
 {
     if (_pin)
+        
     {
         if (circleView.note)
         {
@@ -274,9 +275,18 @@
                 _pin.wordmatch = circleView.keywords;
             }
             [_pin saveInBackground];
-        if (circleView.searchItems)
+        if (circleView.searchOpts)
                 {
-                    NSLog(@"%@", circleView.searchItems);
+                    NSString *gender = [circleView.searchOpts objectAtIndex:0];
+                    NSString *hair = [circleView.searchOpts objectAtIndex:1];
+                    NSString *ethnicity = [circleView.searchOpts objectAtIndex:2];
+                    
+                    _pin.gender = gender;
+                    _pin.hair = hair;
+                    _pin.ethnicity = ethnicity;
+                
+                    
+                    NSLog(@"%@", circleView.searchOpts);
                     [_pin saveInBackground];
                 }
         

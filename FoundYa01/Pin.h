@@ -17,7 +17,9 @@
 @property (nonatomic, strong) PFGeoPoint *location;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) NSString *wordmatch;
-@property (nonatomic, copy) NSMutableDictionary *searchOptionsID;
+@property (nonatomic, copy) NSString *gender;
+@property (nonatomic, copy) NSString *hair;
+@property (nonatomic, copy) NSString *ethnicity;
 //
 ////@property (nonatomic, readonly, copy) NSString *title;
 ////@property (nonatomic, readonly, copy) NSString *subtitle;

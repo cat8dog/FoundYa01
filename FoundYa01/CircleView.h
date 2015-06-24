@@ -32,7 +32,7 @@ typedef NS_ENUM(NSUInteger, PinOption) {
 
 @property (nonatomic, strong) NSString *note;
 @property (nonatomic, strong) NSString *keywords;
-@property (nonatomic, strong) NSMutableDictionary *searchItems;
+@property (nonatomic, strong) NSMutableArray *searchOpts;
 @property (nonatomic, strong) NSString *security;
 @property (nonatomic, strong) NSString *photo;
 @property (nonatomic, strong) NSString *socialMedia;

@@ -14,8 +14,6 @@
 {
     [super viewDidLoad];
     
-    _hairColour.tag = 1;
-    _ethnicityType.tag = 2;
 
     NSString *hairColour0 = @"choose hair";
     NSString *hairColour1 = @"blonde";
@@ -44,11 +42,6 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(didTapDoneButton:)];
 }
 
-- (void) selectPickerView {
-    if (self.hairColour.isFirstResponder) {
-        
-    }
-}
 
 // saving the search info to the search controller (to be sent to Parse when the user saves the pin)
 - (void)didTapDoneButton:(id)sender
@@ -56,8 +49,12 @@
 {
     NSString *chosenHair;
     NSString *ethnicityType;
+    NSString *gender;
     NSInteger index1 = [self.hairColour selectedRowInComponent: 0 ];
     NSInteger index2 = [self.ethnicityType selectedRowInComponent: 0];
+    
+            
+    
     if (index1 > 0) {
         chosenHair = _colourArray [index1];
         NSLog(@"you picked a hair colour, %@,", chosenHair);
@@ -70,28 +67,29 @@
     }   else {
         ethnicityType = @"";
     }
+
+    if (self.searchGender.length > 0){
+        NSLog(@"you picked an gender, %@,", self.searchGender);
+        gender = self.searchGender;
+    } else {
+        gender = @"";
+
+    }
     
+    NSLog(@" %@ %@ %@", chosenHair, ethnicityType, gender);
+    self.searchOpts = [[NSMutableArray alloc] initWithObjects: gender, chosenHair, ethnicityType, nil];
+
     
-    
-//        if (self.gender.text.length > 0){
-//            gender?
-//        } else {
-//    
-//        }
-    
-    self.searchOpts = [[NSMutableArray alloc] initWithObjects: chosenHair, ethnicityType];
-//        self.searchOpts = [[NSMutableArray alloc] initWithObjects: chosenHair, chosenGender, chosenEthnicity]
-    
-//    [self didSaveSearch:self.searchOpts onViewController:]
+  [self.delegate didSaveSearch:self.searchOpts onViewController:self];
     
 }
 
 
     //self.dictOptions = [[NSMutableDictionary alloc] initWithObjectsAndKeys: self.chosenHair, @"hair", nil];
--(void)didSaveSearch:(NSMutableArray *)searchItems onViewController:(SearchViewController *)searchVC
-{
-    
-}
+//-(void)didSaveSearch:(NSMutableArray *)searchItems onViewController:(SearchViewController *)searchVC
+//{
+//    
+//}
     
 
 
@@ -118,6 +116,25 @@
     return _colourArray[row];
 }
 
+//- (void)stateChanged:(UISwitch *)gender
+//{
+//    if ([_genderSwitch isOn]) {
+//        self.gender.text = @"Female";
+//    } else {
+//        self.gender.text = @"Male";
+//    }
+//}
 
+- (IBAction)genderSwitch:(UISwitch *)sender{
+    if ([sender isOn]) {
+        self.searchGender = @"Female";
+        NSLog(@"female");
+       // [sender setOn:NO animated:YES];
+    } else {
+        NSLog(@"male");
+        self.searchGender = @"Male";
+       // [sender setOn:YES animated:YES];
+    }
+}
 
 @end
