@@ -12,6 +12,10 @@
 @dynamic author;
 @dynamic location;
 @dynamic message;
+@dynamic wordmatch;
+@dynamic gender;
+@dynamic hair;
+@dynamic ethnicity;
 
 - (CLLocationCoordinate2D)coordinate
 {
@@ -22,6 +26,16 @@
 {
     self.location = [PFGeoPoint geoPointWithLatitude:coordinate.latitude longitude:coordinate.longitude];
 }
+
+//- (void)setAuthor:(PFUser *)author
+//{
+//    
+//    if (author)
+//    {
+//        [PFObject objectWithoutDataWithClassName:@"_User" objectId: author.objectId];
+//    }
+//}
+
 
 //{
 //    PFUser *_author;

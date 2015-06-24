@@ -69,6 +69,7 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
     NSString *identifier = [@(indexPath.section) stringValue];
     TextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     
+    
     if (cell == nil)
     {
         cell = [[TextFieldTableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:identifier];

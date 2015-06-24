@@ -262,8 +262,10 @@
 - (void)didTapSavingButtonOnCircleView:(CircleView *)circleView
 {
     if (_pin)
+    
         
-    {
+    {  
+        
         if (circleView.note)
         {
            _pin.message = circleView.note;
@@ -290,7 +292,6 @@
                     [_pin saveInBackground];
                 }
         
-            
     }
     
     self.overlay.hidden = YES;
