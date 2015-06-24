@@ -3,10 +3,11 @@
 #import "LogInViewController.h"
 #import "Pin.h"
 #import <Parse/Parse.h>
+#import "DateTimeViewController.h"
 #define METERS_PER_MILE 1609.344
 
 
-@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate, KeyWordsViewControllerDelegate,SearchViewControllerDelegate>
+@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate, KeyWordsViewControllerDelegate,SearchViewControllerDelegate, DateTimeViewControllerDelegate>
 
 @end
 
@@ -65,12 +66,12 @@
         _mapView.showsUserLocation = YES;
         _mapView.showsPointsOfInterest = YES;
     
-    UIButton *findButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    findButton.frame = CGRectMake(150, 80, 100, 60);
-    findButton.backgroundColor = [UIColor blackColor];
-    [findButton setTitle:@"find" forState:UIControlStateNormal];
-    [_mapView addSubview:findButton];
-    [findButton addTarget:self action:@selector(getOptions:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *changeDateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    changeDateButton.frame = CGRectMake(150, 80, 100, 60);
+    changeDateButton.backgroundColor = [UIColor blackColor];
+    [changeDateButton setTitle:@"change date" forState:UIControlStateNormal];
+    [_mapView addSubview:changeDateButton];
+    [changeDateButton addTarget:self action:@selector(getNewDate:) forControlEvents:UIControlEventTouchUpInside];
     
     // temporary "back" button
     UIButton *tagsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -81,6 +82,14 @@
     [tagsButton addTarget:self action:@selector(viewTags:) forControlEvents:UIControlEventTouchUpInside];
     
     // Do any additional setup after loading the view.
+    
+    PFQuery *query = [Pin query];
+    NSDate *now = [NSDate date];
+    [query whereKey:@"pinDropDate" lessThan:now];
+    __weak typeof(self) weakSelf = self;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+        [weakSelf.mapView addAnnotations:objects];
+    }];
 }
 
 
@@ -107,6 +116,7 @@
             self.overlay.hidden = NO;
             Pin *pin = [Pin object];
             pin.author = [PFUser currentUser];
+//            pin.searchOptionsID = [PFRelation searchItems];
             pin.pinDropDate = [NSDate date];
             pin.coordinate = coordinate;
             _pin = pin;
@@ -123,13 +133,7 @@
 {
     [super viewWillAppear:animated];
     
-    PFQuery *query = [Pin query];
-    NSDate *now = [NSDate date];
-    [query whereKey:@"pinDropDate" lessThan:now];
-    __weak typeof(self) weakSelf = self;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-        [weakSelf.mapView addAnnotations:objects];
-    }];
+   
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
@@ -161,20 +165,22 @@
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
+    [mapView deselectAnnotation:view.annotation animated:NO];
     self.overlay.hidden = NO;
+    [mapView setCenterCoordinate:[view.annotation coordinate] animated:YES];
     [self.view bringSubviewToFront:self.overlay];
     
     
 }
 
-// ******* New method for saving location to parse
+// ******* method for changing new Date & Time
 
-//-(void)getOptions:(UIButton *)sender {
-//    
-//    [self performSegueWithIdentifier:@"getOptions" sender:self];
-//    
+-(void)getNewDate:(UIButton *)sender {
+    
+    [self performSegueWithIdentifier:@"getNewDate" sender:self];
+    
 
-//}
+}
 
 -(void)viewTags:(UIButton *)sender {
     
@@ -189,10 +195,12 @@
 - (void)didTapButton:(UIButton *)button
 {
     PinOption option = button.tag;
+    NSLog(@"BUTTON TAP TAG! %i", option);
     switch (option)
     {
         case PinOptionNote:
         {
+            NSLog(@"Notes!");
             UIStoryboard *storyMain = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             NoteViewController *noteViewController = [storyMain instantiateViewControllerWithIdentifier:@"NoteViewController"];
             noteViewController.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -205,6 +213,7 @@
         
         case PinOptionKeyWords:
         {
+            NSLog(@"KEysysyso");
             UIStoryboard *storyMain = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             KeyWordsViewController *keyWordsViewController = [storyMain instantiateViewControllerWithIdentifier:@"KeyWordsViewController"];
             keyWordsViewController.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -218,6 +227,7 @@
          
         case PinOptionSearch:
         {
+            NSLog(@"Searchhhh!");
             UIStoryboard *storyMain = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
             SearchViewController *searchViewController = [storyMain instantiateViewControllerWithIdentifier:@"SearchViewController"];
             searchViewController.modalPresentationStyle = UIModalPresentationFormSheet;
@@ -245,7 +255,7 @@
     self.overlay.circleView.keywords = keywords;
 }
 
-- (void)didSaveSearch:(NSString *)searchItems onViewController:(SearchViewController *)searchVC {
+- (void)didSaveSearch:(NSMutableDictionary *)searchItems onViewController:(SearchViewController *)searchVC {
     self.overlay.circleView.searchItems = searchItems;
 }
 
@@ -266,11 +276,33 @@
             [_pin saveInBackground];
         if (circleView.searchItems)
                 {
+                    NSLog(@"%@", circleView.searchItems);
                     [_pin saveInBackground];
                 }
+        
+            
     }
     
     self.overlay.hidden = YES;
+}
+
+- (void)didSaveDateTime:(PFQuery *)query onViewController:(DateTimeViewController *)DateTimeVC
+{
+    __weak typeof(self) weakself = self;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+        __strong typeof(self) strongSelf = weakself;
+        [strongSelf.mapView removeAnnotations:strongSelf.mapView.annotations];
+        [strongSelf.mapView addAnnotations:objects];
+    }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"getNewDate"])
+    {
+        DateTimeViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
+    }
 }
 
 @end

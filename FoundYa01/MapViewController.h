@@ -21,10 +21,11 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) UIButton *findButton;
+@property (strong, nonatomic) UIButton *changeDateButton;
 @property (strong, nonatomic) UIButton *tagsButton;
 @property (strong, nonatomic) Overlay *overlay;
 @property (strong, nonatomic) NSCalendar *MyTargetDateObject;
+@property (strong, nonatomic) NSMutableDictionary *searchItems;
 
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
