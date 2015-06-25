@@ -12,6 +12,8 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
     ProfileSectionLocation,
     ProfileSectionGender,
     ProfileSectionBirthday,
+    ProfileSectionEthnicity,
+    ProfileSectionHairColour,
     ProfileSectionBio
 };
 
@@ -37,7 +39,7 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
         NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:[PFUser currentUser][@"photo_url"]]];
         dispatch_sync(dispatch_get_main_queue(), ^{UIImage *image = [UIImage imageWithData:data];
             _profileImage = image;
-            [self.tableView reloadData];
+           [self.tableView reloadData];
         });
     });
     
@@ -47,7 +49,7 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
     // Return the number of sections.
-    return 6;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -90,6 +92,16 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
             cell.textField.text = [PFUser currentUser][@"bio"];
             cell.textField.placeholder = @"Bio";
             break;
+                
+        case ProfileSectionEthnicity:
+            cell.textField.text = @"";
+            cell.textField.placeholder = @"ethnicity";
+            break;
+                
+        case ProfileSectionHairColour:
+            cell.textField.text = @"";
+            cell.textField.placeholder = @"hair colour";
+            break;
             
         default:
             break;
@@ -110,7 +122,18 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
     [self.view addSubview:self.tableView];
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
 
-
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle: (UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath
+//{
+//    //[ProfileSection removeObjectAtIndex:indexPath.row];
+//
+//    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//
+//}
 
 @end

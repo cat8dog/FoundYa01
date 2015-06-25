@@ -15,7 +15,7 @@
 
 @end
 
-@interface PublishedProfileTableViewController : UITableViewController <NSURLConnectionDelegate,UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface PublishedProfileTableViewController : UIViewController <NSURLConnectionDelegate,UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
 @property (nonatomic, assign) BOOL didAriveFromFirstTimeSignUp;
@@ -28,6 +28,8 @@
 @property (nonatomic, strong) UITextField *genderField;
 @property (nonatomic, strong) UITextField *birthdayField;
 @property (nonatomic, strong) UITextField *bioField;
+@property (nonatomic, strong) UITextField *ethnicityField;
+@property (nonatomic, strong) UITextField *hairColourField;
 @property (strong, nonatomic) UIButton *saveButton;
 
 @property (nonatomic, strong) UITableView *tableView;

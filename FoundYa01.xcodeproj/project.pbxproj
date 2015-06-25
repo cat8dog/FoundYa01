@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2816D3221B38802C00FB8A7F /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D3211B38802C00FB8A7F /* NoteViewController.m */; };
 		282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 282D17C01B30C06F00B39227 /* UIViewController+Alert.m */; };
+		28491F581B3C9D1F0059592E /* SearchRootPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28491F571B3C9D1F0059592E /* SearchRootPresentationViewController.m */; };
 		284CC1F41B389ADB004F325A /* KeyWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284CC1F31B389ADB004F325A /* KeyWordsViewController.m */; };
 		284CC1F71B38B5DD004F325A /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284CC1F61B38B5DD004F325A /* SearchViewController.m */; };
 		284CC2021B39C6DC004F325A /* DateTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284CC2011B39C6DC004F325A /* DateTimeViewController.m */; };
@@ -23,7 +24,6 @@
 		28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFDA1B1E6EEF00182F82 /* Overlay.m */; };
 		28CDAFE11B1F9DB700182F82 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE01B1F9DB700182F82 /* CircleView.m */; };
 		28CDAFE41B1FA01600182F82 /* CircularButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE31B1FA01600182F82 /* CircularButton.m */; };
-		28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDAFE61B1FCF3700182F82 /* FindViewController.m */; };
 		28CDB0261B22301500182F82 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CDB0251B22301500182F82 /* DiscoverViewController.m */; };
 		28DDD19C1B1D28EE0037045B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19B1B1D28EE0037045B /* main.m */; };
 		28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DDD19E1B1D28EE0037045B /* AppDelegate.m */; };
@@ -53,6 +53,8 @@
 		2816D3211B38802C00FB8A7F /* NoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoteViewController.m; sourceTree = "<group>"; };
 		282D17BF1B30C06F00B39227 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
 		282D17C01B30C06F00B39227 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
+		28491F561B3C9D1F0059592E /* SearchRootPresentationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRootPresentationViewController.h; sourceTree = "<group>"; };
+		28491F571B3C9D1F0059592E /* SearchRootPresentationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRootPresentationViewController.m; sourceTree = "<group>"; };
 		284CC1F21B389ADB004F325A /* KeyWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyWordsViewController.h; sourceTree = "<group>"; };
 		284CC1F31B389ADB004F325A /* KeyWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyWordsViewController.m; sourceTree = "<group>"; };
 		284CC1F51B38B5DD004F325A /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
@@ -81,8 +83,6 @@
 		28CDAFE01B1F9DB700182F82 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
 		28CDAFE21B1FA01600182F82 /* CircularButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularButton.h; sourceTree = "<group>"; };
 		28CDAFE31B1FA01600182F82 /* CircularButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularButton.m; sourceTree = "<group>"; };
-		28CDAFE51B1FCF3700182F82 /* FindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
-		28CDAFE61B1FCF3700182F82 /* FindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
 		28CDB0241B22301500182F82 /* DiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		28CDB0251B22301500182F82 /* DiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		28DDD1961B1D28EE0037045B /* FoundYa01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoundYa01.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +146,17 @@
 			name = PinDrop;
 			sourceTree = "<group>";
 		};
+		28491F551B3C9CEC0059592E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				28C0E3971B31FB620057BC8F /* SettingsTableViewController.h */,
+				28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */,
+				28491F561B3C9D1F0059592E /* SearchRootPresentationViewController.h */,
+				28491F571B3C9D1F0059592E /* SearchRootPresentationViewController.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		28C6A2991B26468D00043773 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,16 +188,12 @@
 		28C6A29B1B2646C900043773 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				28CDAFE51B1FCF3700182F82 /* FindViewController.h */,
-				28CDAFE61B1FCF3700182F82 /* FindViewController.m */,
 				284CC1FE1B39B8CC004F325A /* DateTimeViewController.h */,
 				284CC2011B39C6DC004F325A /* DateTimeViewController.m */,
 				28736EBE1B1D326400C3E544 /* MapViewController.h */,
 				28736EBF1B1D326400C3E544 /* MapViewController.m */,
 				28C6A2901B223EA500043773 /* TagsTableViewController.h */,
 				28C6A2911B223EA500043773 /* TagsTableViewController.m */,
-				28C0E3971B31FB620057BC8F /* SettingsTableViewController.h */,
-				28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -276,6 +283,7 @@
 		28DDD1BF1B1D2B0C0037045B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				28491F551B3C9CEC0059592E /* Search */,
 				28C6A29A1B2646A100043773 /* Log In */,
 				28C6A2991B26468D00043773 /* Profile */,
 				28C6A29B1B2646C900043773 /* Main */,
@@ -438,8 +446,8 @@
 				28C6A2951B26250F00043773 /* LogInViewController.m in Sources */,
 				28FC11B31B2F806500DA3019 /* TextFieldTableViewCell.m in Sources */,
 				284CC1F41B389ADB004F325A /* KeyWordsViewController.m in Sources */,
-				28CDAFE71B1FCF3700182F82 /* FindViewController.m in Sources */,
 				2816D3221B38802C00FB8A7F /* NoteViewController.m in Sources */,
+				28491F581B3C9D1F0059592E /* SearchRootPresentationViewController.m in Sources */,
 				282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */,
 				28C6A2921B223EA500043773 /* TagsTableViewController.m in Sources */,
 				28FC11AA1B2A1A6F00DA3019 /* ProfileHeaderView.m in Sources */,

@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsTableViewController : UITableViewController
+@protocol SettingsTableViewControllerDelegate <NSObject>
+
+@end
+
+@interface SettingsTableViewController : UITableViewController <NSURLConnectionDelegate,UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) NSArray *rowTitleArray;
+@property (nonatomic, strong) NSMutableArray *rowDataArray;
+@property (nonatomic, strong) UITextField *locationField;
+@property (nonatomic, strong) UITextField *dateTimeField;
+@property (nonatomic, strong) UITextField *searchMeField;
+@property (nonatomic, strong) UITextField *searchNewField;
+@property (nonatomic, strong) UITextField *settingsField;
+
+//@property (nonatomic, strong) UITableView *tableView;
 
 @end

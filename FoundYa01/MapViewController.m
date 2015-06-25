@@ -306,6 +306,7 @@
         [strongSelf.mapView removeAnnotations:strongSelf.mapView.annotations];
         [strongSelf.mapView addAnnotations:objects];
     }];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -322,5 +323,6 @@
         
     }
 }
+
 
 @end

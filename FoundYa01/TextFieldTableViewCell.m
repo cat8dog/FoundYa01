@@ -30,6 +30,8 @@
 {
     [super layoutSubviews];
     self.textField.frame = self.contentView.bounds;
+    
 }
 
 @end
+
