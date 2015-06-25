@@ -4,6 +4,7 @@
 #import "Pin.h"
 #import <Parse/Parse.h>
 #import "DateTimeViewController.h"
+#import "PublishedProfileTableViewController.h"
 #define METERS_PER_MILE 1609.344
 
 
@@ -313,6 +314,12 @@
     {
         DateTimeViewController *vc = segue.destinationViewController;
         vc.delegate = self;
+    }
+    if ([segue.identifier isEqualToString:@"viewProfile"])
+    {
+        PublishedProfileTableViewController *pubProfile = segue.destinationViewController;
+        
+        
     }
 }
 

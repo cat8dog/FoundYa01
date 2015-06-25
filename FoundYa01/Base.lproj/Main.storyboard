@@ -62,6 +62,7 @@
                             <outlet property="delegate" destination="6uz-0m-dRO" id="zer-6e-2Bl"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="50s-LQ-OJp"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9DV-R7-LMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -118,6 +119,7 @@
                         <outlet property="mapView" destination="eAS-LX-Jse" id="IpH-WY-acp"/>
                         <segue destination="9JR-oY-xdD" kind="push" identifier="viewTags" id="s7J-IV-Ib0"/>
                         <segue destination="Sfg-Fr-JDR" kind="push" identifier="getNewDate" id="Qyq-uP-hgW"/>
+                        <segue destination="6uz-0m-dRO" kind="push" identifier="viewProfile" id="FEE-er-sHR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ROR-7F-iq2" userLabel="First Responder" sceneMemberID="firstResponder"/>

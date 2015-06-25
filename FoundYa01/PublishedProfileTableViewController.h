@@ -6,12 +6,20 @@
 //  Copyright (c) 2015 Catherine Reyto. All rights reserved.
 //
 
+
+
 #import <UIKit/UIKit.h>
+
+@class PublishedProfileTableViewController;
+@protocol PublishedProfileTableViewControllerDelegate <NSObject>
+
+@end
 
 @interface PublishedProfileTableViewController : UITableViewController <NSURLConnectionDelegate,UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
 
 
 @property (nonatomic, assign) BOOL didAriveFromFirstTimeSignUp;
+
 
 // UITableView row data properties
 @property (nonatomic, strong) NSArray *rowTitleArray;
