@@ -21,7 +21,7 @@
     {
         self.textField = [[UITextField alloc] init];
         [self.contentView addSubview:self.textField];
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
     return self;
 }

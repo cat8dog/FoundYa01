@@ -37,9 +37,21 @@
     
 }
 
+
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    [self loadPresentDate];
+    
+    NSLog(@"View did loaddd self.date, %@", self.pinDate);
     
     self.overlay = [[Overlay alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:self.overlay];
@@ -75,7 +87,7 @@
     [format setDateFormat:@"dd-MM-yyyy HH:mm"];
     NSString *nowDate = [format stringFromDate:today];
     [self.changeDateButton setTitle:nowDate forState:UIControlStateNormal];
-    [self loadPresentDate];
+    
     
 
     
@@ -118,14 +130,15 @@
             [_mapView setCenterCoordinate:coordinate animated:YES];
             self.overlay.hidden = NO;
             
+            
             Pin *pin = [Pin object];
             pin.author = [PFUser currentUser];
 //            pin.searchOptionsID = [PFRelation searchOpts];
-            pin.pinDropDate = self.date;//[NSDate date];
+            pin.pinDropDate = self.pinDate;//[NSDate date];
             pin.coordinate = coordinate;
             _pin = pin;
             
-            NSLog(@"DATE pin: %@", self.date);
+            NSLog(@"DATE pin: %@", self.pinDate);
         }
             break;
             
@@ -135,12 +148,6 @@
 
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-   
-}
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
@@ -311,7 +318,7 @@
     __weak typeof(self) weakself = self;
     NSLog(@"query %@", queryDate);
     
-    self.date = queryDate;
+    self.pinDate = queryDate;
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"dd-MM-yyyy HH:mm"];
@@ -358,8 +365,11 @@
 
     PFQuery *query = [Pin query];
     NSDate *now = [NSDate date];
-        
-        
+    NSLog(@"noWQWDFHADF %@", now );
+    self.pinDate = now;
+    NSLog(@"noWQWDFHADF PINDATE %@", now );
+
+    
     [query whereKey:@"pinDropDate" lessThan:now];
     __weak typeof(self) weakSelf = self;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){

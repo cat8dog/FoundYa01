@@ -37,7 +37,7 @@
         [self addSubview:self.savingButton];
         _radius = radius;
         _container = [[UIView alloc] initWithFrame:CGRectZero];
-        _buttons = [self produceButtons:8 radius:15.0f onView:_container];
+        _buttons = [self produceButtons:8 radius:20.0f onView:_container];
         [self addSubview:_container];
         [self bringSubviewToFront:_container];
         [self bringSubviewToFront:self.savingButton];

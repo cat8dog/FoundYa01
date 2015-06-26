@@ -24,7 +24,7 @@
 @property (strong, nonatomic) Overlay *overlay;
 @property (strong, nonatomic) NSCalendar *MyTargetDateObject;
 @property (strong, nonatomic) NSMutableDictionary *searchItems;
-@property (weak, nonatomic) NSDate *date;
+@property (weak, nonatomic) NSDate *pinDate;
 
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;

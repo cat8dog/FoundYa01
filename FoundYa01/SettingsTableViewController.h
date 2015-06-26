@@ -12,16 +12,22 @@
 
 @end
 
-@interface SettingsTableViewController : UITableViewController <NSURLConnectionDelegate,UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SettingsTableViewController : UITableViewController <NSURLConnectionDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) NSArray *rowTitleArray;
-@property (nonatomic, strong) NSMutableArray *rowDataArray;
-@property (nonatomic, strong) UITextField *locationField;
-@property (nonatomic, strong) UITextField *dateTimeField;
-@property (nonatomic, strong) UITextField *searchMeField;
-@property (nonatomic, strong) UITextField *searchNewField;
-@property (nonatomic, strong) UITextField *settingsField;
+@property (strong, nonatomic) IBOutlet UITableViewCell *searchMeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *searchTimeCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *searchLocationCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *searchNewCell;
+@property (strong, nonatomic) IBOutlet UITableViewCell *settingsCell;
 
-//@property (nonatomic, strong) UITableView *tableView;
+//@property (nonatomic, strong) NSArray *rowTitleArray;
+//@property (nonatomic, strong) NSMutableArray *rowDataArray;
+//@property (nonatomic, strong) UITextField *searchMeCell;
+//@property (nonatomic, strong) UITextField *searchTimeCell;
+//@property (nonatomic, strong) UITextField *searchLocationCell;
+//@property (nonatomic, strong) UITextField *searchNewCell;
+//@property (nonatomic, strong) UITextField *settingsCell;
+
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
