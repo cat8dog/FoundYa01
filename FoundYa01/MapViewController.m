@@ -95,12 +95,12 @@
     [self.changeDateButton addTarget:self action:@selector(getNewDate:) forControlEvents:UIControlEventTouchUpInside];
     
     // temporary "back" button
-    UIButton *tagsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    tagsButton.frame = CGRectMake(150, 600, 100, 60);
-    tagsButton.backgroundColor = [UIColor blackColor];
-    [tagsButton setTitle:@"tags" forState:UIControlStateNormal];
-    [_mapView addSubview:tagsButton];
-    [tagsButton addTarget:self action:@selector(viewTags:) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *findMeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    findMeButton.frame = CGRectMake(150, 600, 100, 60);
+    findMeButton.backgroundColor = [UIColor blackColor];
+    [findMeButton setTitle:@"find me" forState:UIControlStateNormal];
+    [_mapView addSubview:findMeButton];
+    [findMeButton addTarget:self action:@selector(viewTags:) forControlEvents:UIControlEventTouchUpInside];
     
     // Do any additional setup after loading the view.
     
