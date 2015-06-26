@@ -37,6 +37,7 @@ typedef NS_ENUM(NSUInteger, PinOption) {
 @property (nonatomic, strong) NSString *photo;
 @property (nonatomic, strong) NSString *socialMedia;
 @property (nonatomic, strong) NSString *customProfile;
+@property (nonatomic, strong) NSDate *pinDropDate;
 
 @property (nonatomic, strong) CircularButton *savingButton;
 @property (nonatomic, weak) id<CircleViewDelegate> delegate;

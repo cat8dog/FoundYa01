@@ -29,19 +29,10 @@
 
 - (IBAction)Done:(id)sender
 {
-    PFQuery *query = [Pin query];
+    
     NSDate *date = self.setDateTime.date;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *component = [calendar components:(NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitDay) fromDate:date];
-    component.minute = 59;
-    component.hour = 23;
-    NSDate *midnight = [calendar dateFromComponents:component];
-    component.minute = 0;
-    component.hour = 0;
-    NSDate *morning = [calendar dateFromComponents:component];
-    [query whereKey:@"pinDropDate" greaterThan:morning];
-    [query whereKey:@"pinDropDate" lessThan:midnight];
-    [self.delegate didSaveDateTime:query onViewController:self];
+
+    [self.delegate didSaveDateTime:date onViewController:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

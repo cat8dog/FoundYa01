@@ -10,8 +10,9 @@
 
 @class DateTimeViewController;
 @class PFQuery;
+
 @protocol DateTimeViewControllerDelegate <NSObject>
-- (void)didSaveDateTime:(PFQuery *)query onViewController:(DateTimeViewController *)DateTimeVC;
+    - (void)didSaveDateTime:(NSDate *)queryDateString onViewController:(DateTimeViewController *)DateTimeVC;
 @end
 
 
@@ -20,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIDatePicker *setDateTime;
 @property (weak, nonatomic) IBOutlet UILabel *selectedDate;
 @property (weak, nonatomic) NSDate *datePickerControl;
-@property (weak, nonatomic) NSDate *retroDate;
+@property (weak, nonatomic) NSDate *strDate;
 
 @property (weak, nonatomic) id <DateTimeViewControllerDelegate> delegate;
 

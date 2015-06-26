@@ -67,12 +67,20 @@
         _mapView.showsUserLocation = YES;
         _mapView.showsPointsOfInterest = YES;
     
-    UIButton *changeDateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    changeDateButton.frame = CGRectMake(150, 80, 100, 60);
-    changeDateButton.backgroundColor = [UIColor blackColor];
-    [changeDateButton setTitle:@"change date" forState:UIControlStateNormal];
-    [_mapView addSubview:changeDateButton];
-    [changeDateButton addTarget:self action:@selector(getNewDate:) forControlEvents:UIControlEventTouchUpInside];
+    self.changeDateButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.changeDateButton.frame = CGRectMake(100, 80, 200, 60);
+    self.changeDateButton.backgroundColor = [UIColor blackColor];
+    NSDate *today = [NSDate date];
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd-MM-yyyy HH:mm"];
+    NSString *nowDate = [format stringFromDate:today];
+    [self.changeDateButton setTitle:nowDate forState:UIControlStateNormal];
+    [self loadPresentDate];
+    
+
+    
+    [_mapView addSubview:self.changeDateButton];
+    [self.changeDateButton addTarget:self action:@selector(getNewDate:) forControlEvents:UIControlEventTouchUpInside];
     
     // temporary "back" button
     UIButton *tagsButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
@@ -84,13 +92,7 @@
     
     // Do any additional setup after loading the view.
     
-    PFQuery *query = [Pin query];
-    NSDate *now = [NSDate date];
-    [query whereKey:@"pinDropDate" lessThan:now];
-    __weak typeof(self) weakSelf = self;
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
-        [weakSelf.mapView addAnnotations:objects];
-    }];
+    
 }
 
 
@@ -115,12 +117,15 @@
             
             [_mapView setCenterCoordinate:coordinate animated:YES];
             self.overlay.hidden = NO;
+            
             Pin *pin = [Pin object];
             pin.author = [PFUser currentUser];
 //            pin.searchOptionsID = [PFRelation searchOpts];
-            pin.pinDropDate = [NSDate date];
+            pin.pinDropDate = self.date;//[NSDate date];
             pin.coordinate = coordinate;
             _pin = pin;
+            
+            NSLog(@"DATE pin: %@", self.date);
         }
             break;
             
@@ -241,7 +246,9 @@
         
             
         default: {
-            // do nothing
+            NSLog(@"Save retro date!");
+            
+            
         }
             break;
     }
@@ -259,6 +266,7 @@
 - (void)didSaveSearch:(NSMutableArray *)searchOpts onViewController:(SearchViewController *)searchVC {
     self.overlay.circleView.searchOpts = searchOpts;
 }
+
 
 - (void)didTapSavingButtonOnCircleView:(CircleView *)circleView
 {
@@ -298,9 +306,31 @@
     self.overlay.hidden = YES;
 }
 
-- (void)didSaveDateTime:(PFQuery *)query onViewController:(DateTimeViewController *)DateTimeVC
+- (void)didSaveDateTime:(NSDate *)queryDate onViewController:(DateTimeViewController *)DateTimeVC
 {
     __weak typeof(self) weakself = self;
+    NSLog(@"query %@", queryDate);
+    
+    self.date = queryDate;
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"dd-MM-yyyy HH:mm"];
+    NSString *dateString = [format stringFromDate:queryDate];
+    [self.changeDateButton setTitle:dateString forState:UIControlStateNormal];
+
+    
+    PFQuery *query = [Pin query];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *component = [calendar components:(NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitMonth|NSCalendarUnitYear|NSCalendarUnitDay) fromDate:queryDate];
+    component.minute = 59;
+    component.hour = 23;
+    NSDate *midnight = [calendar dateFromComponents:component];
+    component.minute = 0;
+    component.hour = 0;
+    NSDate *morning = [calendar dateFromComponents:component];
+    [query whereKey:@"pinDropDate" greaterThan:morning];
+    [query whereKey:@"pinDropDate" lessThan:midnight];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
         __strong typeof(self) strongSelf = weakself;
         [strongSelf.mapView removeAnnotations:strongSelf.mapView.annotations];
@@ -318,11 +348,30 @@
     }
     if ([segue.identifier isEqualToString:@"viewProfile"])
     {
-        PublishedProfileTableViewController *pubProfile = segue.destinationViewController;
+        PublishedProfileTableViewController *publishedProfileVC = segue.destinationViewController;
         
         
     }
 }
+
+- (void) loadPresentDate {
+
+    PFQuery *query = [Pin query];
+    NSDate *now = [NSDate date];
+        
+        
+    [query whereKey:@"pinDropDate" lessThan:now];
+    __weak typeof(self) weakSelf = self;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+    [weakSelf.mapView addAnnotations:objects];
+
+}];
+    
+
+    
+}
+
+
 
 
 @end
