@@ -10,8 +10,6 @@
 		2816D3221B38802C00FB8A7F /* NoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2816D3211B38802C00FB8A7F /* NoteViewController.m */; };
 		282D17C11B30C06F00B39227 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = 282D17C01B30C06F00B39227 /* UIViewController+Alert.m */; };
 		28491F581B3C9D1F0059592E /* SearchRootPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28491F571B3C9D1F0059592E /* SearchRootPresentationViewController.m */; };
-		28491F5E1B3CEC650059592E /* SearchButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28491F5D1B3CEC650059592E /* SearchButtonTableViewCell.m */; };
-		28491F611B3CF34E0059592E /* fakeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28491F601B3CF34E0059592E /* fakeTableViewController.m */; };
 		28491F641B3DBA450059592E /* SettingsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28491F631B3DBA450059592E /* SettingsTableViewCell.m */; };
 		284CC1F41B389ADB004F325A /* KeyWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284CC1F31B389ADB004F325A /* KeyWordsViewController.m */; };
 		284CC1F71B38B5DD004F325A /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 284CC1F61B38B5DD004F325A /* SearchViewController.m */; };
@@ -58,10 +56,6 @@
 		282D17C01B30C06F00B39227 /* UIViewController+Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Alert.m"; sourceTree = "<group>"; };
 		28491F561B3C9D1F0059592E /* SearchRootPresentationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRootPresentationViewController.h; sourceTree = "<group>"; };
 		28491F571B3C9D1F0059592E /* SearchRootPresentationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRootPresentationViewController.m; sourceTree = "<group>"; };
-		28491F5C1B3CEC650059592E /* SearchButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchButtonTableViewCell.h; sourceTree = "<group>"; };
-		28491F5D1B3CEC650059592E /* SearchButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchButtonTableViewCell.m; sourceTree = "<group>"; };
-		28491F5F1B3CF34E0059592E /* fakeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fakeTableViewController.h; sourceTree = "<group>"; };
-		28491F601B3CF34E0059592E /* fakeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fakeTableViewController.m; sourceTree = "<group>"; };
 		28491F621B3DBA450059592E /* SettingsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewCell.h; sourceTree = "<group>"; };
 		28491F631B3DBA450059592E /* SettingsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewCell.m; sourceTree = "<group>"; };
 		284CC1F21B389ADB004F325A /* KeyWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyWordsViewController.h; sourceTree = "<group>"; };
@@ -162,8 +156,6 @@
 				28C0E3981B31FB620057BC8F /* SettingsTableViewController.m */,
 				28491F561B3C9D1F0059592E /* SearchRootPresentationViewController.h */,
 				28491F571B3C9D1F0059592E /* SearchRootPresentationViewController.m */,
-				28491F5F1B3CF34E0059592E /* fakeTableViewController.h */,
-				28491F601B3CF34E0059592E /* fakeTableViewController.m */,
 				28491F621B3DBA450059592E /* SettingsTableViewCell.h */,
 				28491F631B3DBA450059592E /* SettingsTableViewCell.m */,
 			);
@@ -224,8 +216,6 @@
 				28CDAFE01B1F9DB700182F82 /* CircleView.m */,
 				289D48071B3350E200700A3D /* Pin.h */,
 				289D48081B3350E200700A3D /* Pin.m */,
-				28491F5C1B3CEC650059592E /* SearchButtonTableViewCell.h */,
-				28491F5D1B3CEC650059592E /* SearchButtonTableViewCell.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -469,7 +459,6 @@
 				28FC11891B28FAAC00DA3019 /* ProfileTableViewController.m in Sources */,
 				28CDB0261B22301500182F82 /* DiscoverViewController.m in Sources */,
 				28CDAFD81B1E433700182F82 /* Annotation.m in Sources */,
-				28491F5E1B3CEC650059592E /* SearchButtonTableViewCell.m in Sources */,
 				28C0E3961B31F8440057BC8F /* PublishedProfileTableViewController.m in Sources */,
 				28CDAFDB1B1E6EEF00182F82 /* Overlay.m in Sources */,
 				28DDD19F1B1D28EE0037045B /* AppDelegate.m in Sources */,
@@ -482,7 +471,6 @@
 				284CC2021B39C6DC004F325A /* DateTimeViewController.m in Sources */,
 				28DDD19C1B1D28EE0037045B /* main.m in Sources */,
 				28736EC01B1D326400C3E544 /* MapViewController.m in Sources */,
-				28491F611B3CF34E0059592E /* fakeTableViewController.m in Sources */,
 				284CC1F71B38B5DD004F325A /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

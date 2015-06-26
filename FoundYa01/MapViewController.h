@@ -9,7 +9,9 @@
 @class MapViewController;
 @protocol MapViewControllerDelegate <NSObject>
 
+@optional
 - (void)didSaveNewDate:(NSDateFormatter *)newDate onViewController:(MapViewController *)mapViewVC;
+- (void)didSelectOnlyMeMatches;
 
 @end
 

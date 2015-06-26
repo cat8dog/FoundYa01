@@ -8,7 +8,7 @@
 #define METERS_PER_MILE 1609.344
 
 
-@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate, KeyWordsViewControllerDelegate,SearchViewControllerDelegate, DateTimeViewControllerDelegate>
+@interface MapViewController () <CircleViewDelegate, MKAnnotation, NoteViewControllerDelegate, KeyWordsViewControllerDelegate,SearchViewControllerDelegate, DateTimeViewControllerDelegate, MapViewControllerDelegate>
 
 @end
 
@@ -168,12 +168,12 @@
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     static dispatch_once_t token;
-    dispatch_once(&token, ^{
+    //dispatch_once(&token, ^{
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
         
         // 3
         [_mapView setRegion:viewRegion animated:YES];
-    });
+  //  });
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
@@ -381,7 +381,22 @@
     
 }
 
-
+- (void)didSelectOnlyMeMatches {
+    NSLog(@"I selected only me matches");
+     __weak typeof(self) weakself = self;
+    PFUser *currentUser = [PFUser currentUser];
+    PFQuery *query = [Pin query];
+    [query whereKey:@"gender" equalTo:currentUser[@"gender"]]; // self.gender];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error){
+        __strong typeof(self) strongSelf = weakself;
+        [strongSelf.mapView removeAnnotations:strongSelf.mapView.annotations];
+        [strongSelf.mapView addAnnotations:objects];
+      
+    }];
+   
+    
+    
+}
 
 
 @end

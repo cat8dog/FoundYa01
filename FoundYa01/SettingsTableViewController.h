@@ -1,7 +1,12 @@
 #import <UIKit/UIKit.h>
+#import "MapViewController.h"
 
 @interface SettingsTableViewController : UITableViewController
 
+- (IBAction)searchMe:(UIButton *)sender;
+- (IBAction)searchOthers:(UIButton *)sender;
+
+@property (nonatomic, assign) id <MapViewControllerDelegate> delegate;
 
 @end
 

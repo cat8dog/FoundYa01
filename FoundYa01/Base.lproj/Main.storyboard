@@ -405,10 +405,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DY3-IM-wWY">
-                                                    <rect key="frame" x="8" y="8" width="304" height="30"/>
+                                                    <rect key="frame" x="8" y="8" width="121" height="30"/>
                                                     <state key="normal" title="Me">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="searchMe:" destination="W6U-DX-yr4" eventType="touchUpInside" id="lVu-oy-cys"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -419,22 +422,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9if-v9-v6f">
-                                                    <rect key="frame" x="8" y="7" width="304" height="30"/>
+                                                    <rect key="frame" x="8" y="7" width="112" height="30"/>
                                                     <state key="normal" title="Others">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="tYR-2M-c4j">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tYR-2M-c4j" id="lah-z9-DxQ">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="te1-9m-CJj">
-                                                    <rect key="frame" x="8" y="7" width="304" height="30"/>
-                                                    <state key="normal" title="Button">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
@@ -451,7 +440,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wzj-Xh-aQi">
-                                                    <rect key="frame" x="137" y="8" width="60" height="30"/>
+                                                    <rect key="frame" x="53" y="5" width="60" height="30"/>
                                                     <state key="normal" title="Location">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -465,7 +454,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHF-l1-6Ah">
-                                                    <rect key="frame" x="137" y="8" width="34" height="30"/>
+                                                    <rect key="frame" x="53" y="5" width="34" height="30"/>
                                                     <state key="normal" title="Time">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -686,7 +675,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ypk-q9-h2g">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <connections>
-                                    <segue destination="W6U-DX-yr4" kind="embed" id="Wnz-b4-PeG"/>
+                                    <segue destination="W6U-DX-yr4" kind="embed" identifier="centreInclusion" id="Wnz-b4-PeG"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZC-Si-QYK">
@@ -695,7 +684,7 @@
                                     <constraint firstAttribute="width" constant="240" id="aJz-8y-reD"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="3jd-Q5-JmV" kind="embed" id="zkx-KM-xrV"/>
+                                    <segue destination="3jd-Q5-JmV" kind="embed" identifier="rightInclusion" id="zkx-KM-xrV"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -745,6 +734,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gu4-9T-fNc">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="568"/>
+                                <connections>
+                                    <outlet property="delegate" destination="3jd-Q5-JmV" id="T8C-VU-NEh"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -755,6 +747,9 @@
                             <constraint firstItem="gu4-9T-fNc" firstAttribute="leading" secondItem="qrR-t9-VAk" secondAttribute="leading" id="zMn-r5-fnb"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="gu4-9T-fNc" id="Rzp-Z0-2mz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QzC-q4-nX4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

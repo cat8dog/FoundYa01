@@ -29,12 +29,15 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
 }
 
 
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        if ([self.delegate respondsToSelector:@selector(didSelectOnlyMeMatches)]) {
+            [self.delegate didSelectOnlyMeMatches];
+        }
+    }
+}
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//
-//    // Return the number of sections.
-//    return 2;
-//}
+
 //
 //- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 //
@@ -202,4 +205,12 @@ typedef NS_ENUM(NSUInteger, ProfileSection) {
 //    
 //    
 
+- (IBAction)searchMe:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(didSelectOnlyMeMatches)]) {
+        [self.delegate didSelectOnlyMeMatches];
+    }
+}
+
+- (IBAction)searchOthers:(UIButton *)sender {
+}
 @end
